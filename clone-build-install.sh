@@ -8,8 +8,14 @@
 SYNERGIA_WORK_DIR="$HOME/workdir"
 SYNERGIA_INSTALL_DIR="$HOME/synergia-install"
 
-SYNERGIA_PYTHON_DOTVER="python3.8"
-SYNERGIA_GIT_BRANCH="mac-native"
+
+SYNERGIA_PYTHON_DOTVER=$(python3 -c "from sys import version_info as v; print(f\"python{v.major}.{v.minor}\")")
+# If you want to hard-wire the version of python to be used, comment out the definition of
+# SYNERGIA_PYTHON_DOTVER above, and uncomment and ajust the one below.
+# SYNERGIA_PYTHON_DOTVER="python3.8"
+
+CHEF_GIT_BRANCH="master"
+SYNERGIA_GIT_BRANCH="devel-pre3"
 
 # If you need to load any environment modules (e.g. on Fedora) do that here.
 # module load mpi
@@ -43,8 +49,8 @@ mkdir "${SYNERGIA_WORK_DIR}/synergia-build" || die "Failed to create directory f
 # Clone repositories
 cd "${SYNERGIA_WORK_DIR}"
 echo "Cloning repositories into ${SYNERGIA_WORK_DIR}"
-git clone --branch "${SYNERGIA_GIT_BRANCH}" https://bitbucket.org/fnalacceleratormodeling/chef.git || die "Failed to clone chef repository"
-git clone --branch "${SYNERGIA_GIT_BRANCH}" https://mpaterno@bitbucket.org/fnalacceleratormodeling/synergia2.git || die "Failed to clone synergia2 repository"
+git clone --branch "${CHEF_GIT_BRANCH}"     https://bitbucket.org/fnalacceleratormodeling/chef.git      || die "Failed to clone chef repository"
+git clone --branch "${SYNERGIA_GIT_BRANCH}" https://bitbucket.org/fnalacceleratormodeling/synergia2.git || die "Failed to clone synergia2 repository"
 
 # Configure, build and install CHEF
 cd "${SYNERGIA_WORK_DIR}/chef-build"
