@@ -57,6 +57,7 @@ cd "${SYNERGIA_WORK_DIR}/chef-build"
 echo "Building chef in ${PWD}"
 cmake -DUSE_PYTHON_3=1 -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="${SYNERGIA_INSTALL_DIR}" ../chef || die "cmake generation failed for chef"
 # set parallel build degree as a variable above
+make create_includedir || die "Building failed for chef.create_includedir" # we have to do this one non-parallel
 make -j 4 || die "Building failed for chef"
 make install || die "Installation failed for chef"
 
