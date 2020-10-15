@@ -1,0 +1,3 @@
+#!/bin/bash
+
+docker run -it --rm -e SYNERGIA2DIR=/home/synergia/install/lib --mount type=bind,src=/etc/passwd,dst=/etc/passwd,readonly --mount type=bind,src=/etc/group,dst=/etc/group,readonly --mount type=bind,src=${PWD},dst=/home/workdir --user $(id -u):$(id -g) egstern/ubuntu2004-devel-pre3 /usr/bin/python3 "$@"
