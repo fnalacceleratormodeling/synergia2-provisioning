@@ -36,7 +36,7 @@ RUN mkdir ${SRC}
 RUN mkdir ${BLD}
 RUN mkdir ${INSTALL}
 WORKDIR ${SRC}
-RUN git clone -b mastern https://bitbucket.org/fnalacceleratormodeling/chef.git
+RUN git clone -b master https://bitbucket.org/fnalacceleratormodeling/chef.git
 RUN mkdir ${BLD}/chef
 WORKDIR ${BLD}/chef
 RUN cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${INSTALL} -DBUILD_PARSER_MODULES=0 -DBUILD_PYTHON_BINDINGS=1 -DBUILD_SHARED_LIBS=1 -DUSE_PYTHON_3=1 ${SRC}/chef
