@@ -13,11 +13,11 @@ git clone https://github.com/fnalacceleratormodeling/synergia2-provisioning.git
 cd synergia2-repository/devel-pre3-on-wc
 ```
 Synergia will be built in a tree structure under a root directory which is the value of the
-`SYNHOME` variable specified in the file `10_create_directories.sh`:
+`SYNHOME` variable.
+By default, this is `syn2-devel-pre` in the user's home directory as specified in the file `10_create_directories.sh`:
 ```
 SYNHOME=${HOME}/syn2-devel-pre3
 ```
-
 
 The file `load_synergia_modules.sh` loads all the modules that Synergia uses during build and
 execution.
@@ -34,4 +34,19 @@ bash -x 35_install-mpi4py.sh
 bash -x 55_install-synergia2.sh
 ```
 
-The libraries and executables will be installed in the 
+The libraries and executables will be installed in the `install` subdirectory with binaries installed in `install/bin`, libraries in `install/lib` and Python modules in `install/lib/python3.7/site-packages`.
+
+The installation also creates a setup script in `install/bin/setup.sh` which should be sourced to load all the correct modules and set up path environment variables.
+An example is shown below:
+```
+[user@wc ~]$ . ~/syn2-devel-pre3/install/bin/setup.sh
+[user@wc ~]$ synergia -i
+Python 3.7.3 (default, Mar 27 2019, 22:11:17) 
+[GCC 7.3.0] :: Anaconda, Inc. on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import synergia
+    (suppressed warning messages from Anaconda about to-Python converter)
+
+>>> 
+
+```
