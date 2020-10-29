@@ -33,6 +33,13 @@ bash -x 30_install-eigen3.sh
 bash -x 35_install-mpi4py.sh
 bash -x 55_install-synergia2.sh
 ```
+The `55_install-synergia2.sh` script accepts an argument:
+<dl>
+    <dt> <em>overwrite</em> </dt>
+    <dd> Erases and redownloads Synergia </dd>
+    <dt> <em>reinstall</em> </dt>
+    <dd> Reconfigures without downloading (cmake), builds and installs </dd>
+</dl>
 
 The libraries and executables will be installed in the `install` subdirectory with binaries installed in `install/bin`, libraries in `install/lib` and Python modules in `install/lib/python3.7/site-packages`.
 
