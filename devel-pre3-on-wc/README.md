@@ -18,6 +18,9 @@ By default, this is `syn2-devel-pre` in the user's home directory as specified i
 ```
 SYNHOME=${HOME}/syn2-devel-pre3
 ```
+but that area will not generally be reliably accessible to running jobs so
+it is recommended to build in a subdirectory of your project space on the lustre
+disk would would look like `/wclustre/<your-project>/<your-username>`.
 
 The file `load_synergia_modules.sh` loads all the modules that Synergia uses during build and
 execution.
