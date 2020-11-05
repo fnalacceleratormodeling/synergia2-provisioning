@@ -85,12 +85,6 @@ then
         exit 10
     fi
 
-    cp ${SYNSRC}/src/synergia/bunch/tests/CMakeLists.txt ${SYNSRC}/src/synergia/bunch/tests/CMakeLists.txt.before
-    echo "sed command:"
-    sed -i -e '/COMMAND.*diagnostics_crosscheck.py/s/COMMAND.*$/COMMAND cp ${CMAKE_CURRENT_SOURCE_DIR}\/icc-files\/*.icc .\)/' ${SYNSRC}/src/synergia/bunch/tests/CMakeLists.txt
-    echo sed -i -e '/DEPENDS.*diagnostics_crosscheck.py/d' ${SYNSRC}/src/synergia/bunch/tests/CMakeLists.txt
-    sed -i -e '/DEPENDS.*diagnostics_crosscheck.py/d' ${SYNSRC}/src/synergia/bunch/tests/CMakeLists.txt
-
     SYNBLD=${BLD}/synergia2
     mkdir -p ${SYNBLD}
     cd ${SYNBLD}
