@@ -27,7 +27,7 @@ We have used a *spack environment* to obtain a consistent set of modules.
 most recent to set up.
 
 ```
-spack env activate synergia-dev-004
+spack env activate synergia-dev-005
 ```
 
 This establishes the environment in which you can build Synergia.
