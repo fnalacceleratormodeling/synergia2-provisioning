@@ -24,10 +24,10 @@ export PATH=/work1/accelsim/spack-shared-v2/cmake-3.19.5-Linux-x86_64/bin:$PATH
 
 We have used a *spack environment* to obtain a consistent set of modules.
 `spack env list` will list the available spack environments. Choose the
-most recent to set up:
+most recent to set up.
 
 ```
-spack env activate synergia-dev-001
+spack env activate synergia-dev-004
 ```
 
 This establishes the environment in which you can build Synergia.
