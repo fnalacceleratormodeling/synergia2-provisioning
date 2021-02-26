@@ -1,16 +1,21 @@
 We have a shared installation, through spack, the infrastructure needed to
 build Synergia devel-3, building on a worker node.
 
+Note that these are *not* the instructions for creating a new spack environment;
+see [Creating a new environment](creating-a-new-environment.md).
+
 ## Access the worker node
 
-Access to the worker nodes is done from we.fnal.gov. The following command
-obtains a shell session on an interactive worker node:
+Access to the worker nodes is done from `wc.fnal.gov`. The following command
+obtains a shell session on an interactive worker node, with `HOME` set to the right value:
 
 ```
 HOME=/work1/accelsim/$(id -un) srun -A accelsim  --cpus-per-task=20  --unbuffered --pty  --partition=gpu_gce --nodelist=wcgpu04 --gres=gpu:1  /bin/bash -l
 ```
 
 You may need to change wcgpu04 to another node number (wcgpu03 -- wcgpu06).
+
+## Set up the working environment
 
 Next we load the required modules, and make available spack and the most recent cmake:
 
