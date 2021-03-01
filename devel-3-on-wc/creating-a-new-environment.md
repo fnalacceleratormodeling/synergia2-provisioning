@@ -32,11 +32,15 @@ that need to be built and installed to get built and installed, and then the
 command will fail. The second install detects that nothing new needs to be
 built, and then updates the "view", and succeeds.
 
+Note that after creating a new environment, it appears to be necessary to set
+the *group write* permission for all the files in the new directory.
+
 The `spack add` command that includes he list of products, and their variants,
 in the most recent environment (`synergia-dev-005`) is:
 
 ```
 spack add  openmpi hdf5+mpi+hl fftw+openmp+mpi eigen gsl py-numpy py-mpi4py python py-pytest py-h5py py-pyparsing py-pip
+chmod -R g+w /work1/spack-shared-v2/spack/var/spack/environments/
 ```
 
 Please update this list, and the current version numbers in these instructions,
