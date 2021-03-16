@@ -7,13 +7,11 @@ see [Creating a new environment](creating-a-new-environment.md).
 ## Access the worker node
 
 Access to the worker nodes is done from `wc.fnal.gov`. The following command
-obtains a shell session on an interactive worker node, with `HOME` set to the right value:
-
+obtains a shell session on an interactive worker node, with `HOME` set to the right value.
+You also should specify `--constraint` to get the type of GPU you are looking for; for example, to get a machine with a `v100` GPU, use:
 ```
-HOME=/work1/accelsim/$(id -un) srun -A accelsim  --cpus-per-task=20  --unbuffered --pty  --partition=gpu_gce --nodelist=wcgpu04 --gres=gpu:1  /bin/bash -l
+HOME=/work1/accelsim/$(id -un) srun -A accelsim  --cpus-per-task=20  --unbuffered --pty  --partition=gpu_gce --constraint=v100 --gres=gpu:1  /bin/bash -l
 ```
-
-You may need to change wcgpu04 to another node number (wcgpu03 -- wcgpu06).
 
 ## Set up the working environment
 
