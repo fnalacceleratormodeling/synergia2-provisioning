@@ -15,6 +15,7 @@ Next we load the required modules, and make available spack and the most recent 
 module load cuda11/11.1.1
 module load gnu9/9.3.0
 module load openmpi3
+module load texlive/2019   # to support matplotlib use
 source /work1/accelsim/spack-shared-v2/spack/share/spack/setup-env.sh
 export PATH=/work1/accelsim/spack-shared-v2/cmake-3.19.5-Linux-x86_64/bin:$PATH
 ```
