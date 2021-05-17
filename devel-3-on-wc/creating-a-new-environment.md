@@ -28,7 +28,7 @@ perhaps removing a few specs. To find out how another environment was created, y
 activate that environment and then query it. Here's how to do so:
 
 1. `spack env list`            # list the available environments
-2. `spack env activate <environment name> # activate the named environment
+2. `spack env activate <environment name>` # activate the named environment
 3. `spack find`                # list the contents of the active environment
 
 The output of `spack find` has three parts:
