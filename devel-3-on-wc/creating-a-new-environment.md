@@ -48,13 +48,23 @@ a new one, you have to remember to deactivate the current environment, using
 The steps to make and populate a new spack environment are:
 
 1. `spack env create <name>`
+2. **Edit the `spack.yaml` file in the newly-created environment**. # see note 1 below
 2. `spack env activate <name>`
 3. `spack add <product1> .. <product n>`
-4. `spack concretize`    # see note 1 below 
-5. `spack install`       # see note 2 below
+4. `spack concretize`    # see note 2 below 
+5. `spack install`       # see note 3 below
 6. `spack install`
 
-**Note 1** The `spack concretize` command is very likely to produce one or more warnings.
+**Note 1** Spack environments are not *by default* built in a coherent fashion; that is,
+spack does not *by default* make sure all packages are compatible. To make spack create
+coherent environments, edit the `spack.yaml` file in the top-level of the environment
+to contain the parameter and value: `concretization: together`. This should appear at
+the same level as does the `specs` entry:
+
+    spack:
+        concretization: together
+
+**Note 2** The `spack concretize` command is very likely to produce one or more warnings.
 Warnings of the form:
 
     Warning: [...] Skipping external package: [package spec]
@@ -63,7 +73,7 @@ can be ignored. They are just spack telling you that the packages we have
 told spack are available as part of the host system are being used, rather
 than built anew.
 
-**Note 2** The first `spack install` command is most likely to result in a error.
+**Note 3** The first `spack install` command is most likely to result in a error.
 If it does, the solution is to execute a second `spack install` command.
 
 At least as of the time of this
