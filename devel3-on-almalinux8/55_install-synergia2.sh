@@ -5,9 +5,9 @@
 
 if [ -z "${PYTHONPATH}" ]
 then
-    export PYTHONPATH=${SYNINSTALL}/lib:${SYNINSTALL}/lib/${PY_VER}/site-packages
+    export PYTHONPATH=${SYNINSTALL}/lib:${SYNINSTALL}/lib/${PY_VER}/site-packages:${SYNINSTALL}/lib64:${SYNINSTALL}/lib64/${PY_VER}/site-packages
 else
-    export PYTHONPATH=${SYNINSTALL}/lib:${SYNINSTALL}/lib/${PY_VER}/site-packages:${PYTHONPATH}
+    export PYTHONPATH=${SYNINSTALL}/lib:${SYNINSTALL}/lib/${PY_VER}/site-packages:${SYNINSTALL}/lib64:${SYNINSTALL}/lib64/${PY_VER}/site-packages:${PYTHONPATH}
 fi
 
 export SYNSRC=${SRC}/synergia2
@@ -118,7 +118,7 @@ cmake -DCMAKE_INSTALL_PREFIX=${SYNINSTALL} \
         exit 10
     fi
 
-    make |& tee synergia2.make.out
+    make VERBOSE=t |& tee synergia2.make.out
     if [ $? -eq 0 ]
     then
         echo "Congratulations!! synergia2 is make worked !!!"
@@ -151,15 +151,15 @@ module load mpi
 PATH=${SYNINSTALL}/bin:\${PATH}
 if [ -n "\${LD_LIBRARY_PATH}" ]
 then
-    export LD_LIBRARY_PATH=${SYNINSTALL}/lib:\${LD_LIBRARY_PATH}
+    export LD_LIBRARY_PATH=${SYNINSTALL}/lib:${SYNINSTALL}/lib64:\${LD_LIBRARY_PATH}
 else
-    export LD_LIBRARY_PATH=${SYNINSTALL}/lib
+    export LD_LIBRARY_PATH=${SYNINSTALL}/lib:${SYNINSTALL}/lib64
 fi
 if [ -n "\${PYTHONPATH}" ]
 then
-    export PYTHONPATH=${SYNINSTALL}/lib:${SYNINSTALL}/lib/${PY_VER}/site-packages:\${PYTHONPATH}
+    export PYTHONPATH=${SYNINSTALL}/lib:${SYNINSTALL}/lib/${PY_VER}/site-packages:${SYNINSTALL}/lib64/${PY_VER}/site-packages:\${PYTHONPATH}
 else
-    export PYTHONPATH=${SYNINSTALL}/lib:${SYNINSTALL}/lib/${PY_VER}/site-packages
+    export PYTHONPATH=${SYNINSTALL}/lib:${SYNINSTALL}/lib/${PY_VER}/site-packages:${SYNINSTALL}/lib64/${PY_VER}/site-packages
 fi
 EOF
 
