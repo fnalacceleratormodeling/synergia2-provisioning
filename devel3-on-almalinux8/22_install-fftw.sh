@@ -16,7 +16,7 @@ then
     fi
 
     FFTWURL="http://www.fftw.org/fftw-3.3.8.tar.gz"
-    wget ${FFTWURL} -O- | tar xzvf -
+    curl ${FFTWURL} | tar xzvf -
     mv fftw-3* fftw
 
 

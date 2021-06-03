@@ -16,7 +16,7 @@ then
     fi
 
     BOOSTURL="https://dl.bintray.com/boostorg/release/1.74.0/source/boost_1_74_0.tar.bz2"
-    wget ${BOOSTURL} -O- | tar xjf -
+    curl ${BOOSTURL} | tar xjf -
     mv boost* boost
 
 
