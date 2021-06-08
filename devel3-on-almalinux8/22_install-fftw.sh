@@ -15,8 +15,8 @@ then
         exit
     fi
 
-    FFTWURL="http://www.fftw.org/fftw-3.3.8.tar.gz"
-    curl ${FFTWURL} | tar xzvf -
+    FFTWURL="https://www.fftw.org/fftw-3.3.9.tar.gz"
+    curl --insecure "${FFTWURL}" | tar xzvf -
     mv fftw-3* fftw
 
 
