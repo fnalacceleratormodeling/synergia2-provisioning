@@ -33,6 +33,7 @@ then
     then
         echo "Contratulations, mpi4py is installed"
     else
-        echo "Oh NOOO! Something went wrong with mpoi4py!!"
+        echo "Oh NOOO! Something went wrong with mpi4py!!"
+	exit 11
     fi
 fi
