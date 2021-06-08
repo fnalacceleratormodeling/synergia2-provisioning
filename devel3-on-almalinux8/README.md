@@ -2,7 +2,7 @@
 
 These scripts will build the devel3 branch of Synergia on
 an EL8 based system using most packages installed from rpms.
-We use gcc8.4 installed by dnf.
+We use gcc8.4 (the system compiler)  installed by dnf.
 The cmake binary version > 3.15 has previous been downloaded and installed on the PATH.
 These additional packages are also installed from rpm:
 
@@ -11,7 +11,6 @@ These additional packages are also installed from rpm:
 * `gsl-devel`
 * `hdf5-devel`
 * `python36-numpy`
-* 
 
 ## PYTHON scripts do not currently work!!!!
 
@@ -45,5 +44,3 @@ The `55_install-synergia2.sh` script accepts an argument:
 The libraries and executables will be installed in the `install` subdirectory with binaries installed in `install/bin`, libraries in `install/lib` and Python modules in `install/lib/python3.6/site-packages`.
 
 The installation also creates a setup script in `install/bin/setup.sh` which should be sourced to load all the correct modules and set up path environment variables.
-An example is shown below:
-```
