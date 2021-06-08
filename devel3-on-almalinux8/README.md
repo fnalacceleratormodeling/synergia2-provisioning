@@ -19,7 +19,7 @@ These additional packages are also installed from rpm:
 git clone the `synergia2-provisioning` repository:
 ```
 git clone https://github.com/fnalacceleratormodeling/synergia2-provisioning.git
-cd synergia2-repository/devel-pre3-on-sl7-gcc9
+cd synergia2-repository/devel3-on-almalinux8
 ```
 Synergia will be built in a tree structure under a root directory which is the value of the
 `SYNHOME` variable.
