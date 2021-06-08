@@ -102,12 +102,12 @@ CC=gcc CXX=g++ \
 cmake -DCMAKE_INSTALL_PREFIX=${SYNINSTALL} \
   -DFFTW3_INCLUDE_DIR=${FFTW_INC} -DFFTW3_LIBRARIES=${FFTW_DIR}/lib/libfftw3.so -DFFTW3_MPI_LIBRARIES=${FFTW_DIR}/lib/libfftw3_mpi.so -DFFTW3_OMP_LIBRARIES=${FFTW_DIR}/lib/libfftw3_omp.so \
   -DCMAKE_BUILD_TYPE=Release \
--DKokkos_ENABLE_CUDA=off \
+  -DKokkos_ENABLE_CUDA=off \
   -DKokkos_ENABLE_OPENMP=on \
--DALLOW_PADDING=on \
--DBUILD_PYTHON_BINDINGS=on \
--DPYTHON_EXECUTABLE=${PY_EXE} \
--DSIMPLE_TIMER=off \
+  -DALLOW_PADDING=on \
+  -DBUILD_PYTHON_BINDINGS=on \
+  -DPYTHON_EXECUTABLE=${PY_EXE} \
+  -DSIMPLE_TIMER=off \
   ${SYNSRC} |& tee synergia2.cmake.out
 
     if [ $? -eq 0 ]
@@ -118,7 +118,7 @@ cmake -DCMAKE_INSTALL_PREFIX=${SYNINSTALL} \
         exit 10
     fi
 
-    make VERBOSE=t |& tee synergia2.make.out
+    make VERBOSE=t -j 4 |& tee synergia2.make.out
     if [ $? -eq 0 ]
     then
         echo "Congratulations!! synergia2 is make worked !!!"
