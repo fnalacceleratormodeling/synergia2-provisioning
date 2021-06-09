@@ -137,8 +137,6 @@ cat >${SYNINSTALL}/bin/setup.sh <<EOF
 
 # load the mpi module
 
-module load mpi
-
 PATH=${SYNINSTALL}/bin:\${PATH}
 if [ -n "\${LD_LIBRARY_PATH}" ]
 then
