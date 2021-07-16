@@ -29,7 +29,7 @@ then
     cd ${SRC}/mpi4py
     MPICC=mpicc MPICXX=mpicxx /usr/bin/python3 setup.py install --prefix=${SYNINSTALL}
 
-    if [ $? ]
+    if [ $? -eq 0 ]
     then
         echo "Contratulations, mpi4py is installed"
     else
