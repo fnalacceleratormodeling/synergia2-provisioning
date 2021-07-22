@@ -98,7 +98,7 @@ cmake -DCMAKE_INSTALL_PREFIX=${SYNINSTALL} \
   -DALLOW_PADDING=on \
   -DBUILD_PYTHON_BINDINGS=on \
   -DPYTHON_EXECUTABLE=${PY_EXE} \
-  -DSIMPLE_TIMER=off \
+  -DSIMPLE_TIMER=OFF \
    ${SYNSRC} |& tee synergia2.cmake.out
 
     if [ $? -eq 0 ]
@@ -146,9 +146,10 @@ else
 fi
 if [ -n "\${PYTHONPATH}" ]
 then
-    export PYTHONPATH=${SYNINSTALL}/lib:${SYNINSTALL}/lib/${PY_VER}/site-packages:\${PYTHONPATH}
+    #export PYTHONPATH=${SYNINSTALL}/lib:${SYNINSTALL}/lib/${PY_VER}/site-packages:\${PYTHONPATH}
+    export PYTHONPATH=${SYNBLD}/src:\${PYTHONPATH}
 else
-    export PYTHONPATH=${SYNINSTALL}/lib:${SYNINSTALL}/lib/${PY_VER}/site-packages
+    export PYTHONPATH=${SYNBLD}/src
 fi
 EOF
 

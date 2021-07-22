@@ -137,6 +137,12 @@ cmake -DCMAKE_INSTALL_PREFIX=${SYNINSTALL} \
 
 fi # if make_synergia2
 
+# Python modules installation for Synergia is currently broken.  Disable
+# the site-packages directory and just use the structure from the build
+# directories.
+mv ${SYNINSTALL}/lib/${PY_VER}/site-packages/synergia2 ${SYNINSTALL}/lib/${PY_VER}/site-packages/synergia2-ng
+PYTHONPATH=${SYNBLD}/src:${PYTHONPATH}
+
 echo "Define these environment variables:"
 echo "LD_LIBRARY_PATH=${LD_LIBRARY_PATH}"
 echo "PYTHONPATH=${PYTHONPATH}"
