@@ -54,8 +54,13 @@ RUN git clone -b devel3 https://bitbucket.org/fnalacceleratormodeling/synergia2.
 WORKDIR ${BLD}/synergia2
 
 RUN cmake -DCMAKE_INSTALL_PREFIX=${INSTALL} \
-  -DKokkos_ENABLE_OPENMP=ON \
   -DCMAKE_BUILD_TYPE=Release \
+  -DKokkos_ENABLE_OPENMP=ON \
+  -DKokkos_ENABLE_CUDA=OFF \
+  -DALLOW_PADDING=on \
+  -DBUILD_PYTHON_BINDINGS=on \
+  -DPYTHON_EXECUTABLE=/usr/bin/python3 \
+  -DSIMPLE_TIMER=OFF \
   ${SRC}/synergia2 \
   && make -j 4 \
   && make install

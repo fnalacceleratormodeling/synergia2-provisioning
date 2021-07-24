@@ -3,7 +3,7 @@
 NAME = fnalacceleratormodeling/synergia3
 
 # Remember to increment VERSION as you make new versions.
-VERSION = 0.0.3
+VERSION = 0.0.4
 
 .PHONY: all build tag_latest release test shell
 
@@ -25,7 +25,7 @@ shell-linux:
     --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" \
 		--privileged \
 		$(NAME):$(VERSION)
-		
+
 shell-macos:
 	docker run -it --rm \
     --env="DISPLAY" \
