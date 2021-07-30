@@ -50,10 +50,11 @@ The steps to make and populate a new spack environment are:
 1. `spack env create <name>`
 2. **Edit the `spack.yaml` file in the newly-created environment**. # see note 1 below
 2. `spack env activate <name>`
-3. `spack add <product1> .. <product n>` # see note 4 below
-4. `spack concretize`    # see note 2 below 
-5. `spack install`       # see note 3 below
+3. `spack add <product1> .. <product n>`                            # see note 4 below
+4. `spack concretize`                                               # see note 2 below 
+5. `spack install`                                                  # see note 3 below
 6. `spack install`
+7.  `chmod -R g+w $SPACK_ENV`                                       # see note 5 below
 
 **Note 1** Spack environments are not *by default* built in a coherent fashion; that is,
 spack does not *by default* make sure all packages are compatible. To make spack create
@@ -90,12 +91,9 @@ using (and not building).
 However, do not repeat the `spack add` command after `spack concretize` has
 been run. That leads to madness.
 
+**Note 5**  After creating a new environment, it appears to be necessary to set
+the *group write* permission for all the files in the new directory, or others
+can not use the environment.
+
 **End of notes**
-
-After creating a new environment, it appears to be necessary to set
-the *group write* permission for all the files in the new directory.
-
-```
-chmod -R g+w $SPACK_ROOT/var/spack/environments/
-```
 
