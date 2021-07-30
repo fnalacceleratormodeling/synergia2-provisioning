@@ -57,7 +57,9 @@ The steps to make and populate a new spack environment are:
 
 **Note 1** Spack environments are not *by default* built in a coherent fashion; that is,
 spack does not *by default* make sure all packages are compatible. To make spack create
-coherent environments, edit the `spack.yaml` file in the top-level of the environment
+coherent environments, edit the `spack.yaml` file in the top-level of the environment.
+Once you have activated the spack environment, the environment variable `SPACK_ENV` is
+set to this directory. Edit the file 
 to contain the parameter and value: `concretization: together`. This should appear at
 the same level as does the `specs` entry:
 
