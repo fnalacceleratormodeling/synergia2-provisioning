@@ -50,7 +50,7 @@ The steps to make and populate a new spack environment are:
 1. `spack env create <name>`
 2. **Edit the `spack.yaml` file in the newly-created environment**. # see note 1 below
 2. `spack env activate <name>`
-3. `spack add <product1> .. <product n>`
+3. `spack add <product1> .. <product n>` # see note 4 below
 4. `spack concretize`    # see note 2 below 
 5. `spack install`       # see note 3 below
 6. `spack install`
@@ -85,6 +85,10 @@ command will fail. The second install detects that nothing new needs to be
 built, and then updates the "view", and succeeds. It is most likely to
 generate more warnings, again due to the system-installed products we are
 using (and not building).
+
+**Note 4** The `spack add` command can be run many times, not just once.
+However, do not repeat the `spack add` command after `spack concretize` has
+been run. That leads to madness.
 
 **End of notes**
 
