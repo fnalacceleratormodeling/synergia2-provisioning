@@ -9,6 +9,13 @@ an appropriate worker node (with a V100 GPU).
 HOME=/work1/accelsim/spack-shared-v2 srun -A accelsim  --cpus-per-task=20  --unbuffered --pty  --partition=gpu_gce --constraint=v100 --gres=gpu:1  /bin/bash -l
 ```
 
+Getting access to a GPU node is sometimes not possible; there are few V100s on the cluster.
+You can instead try a CPU node:
+
+```
+HOME=/work1/accelsim/spack-shared-v2 srun -A accelsim  --cpus-per-task=20  --unbuffered --pty  --partition=cpu_gce /bin/bash -l
+```
+
 Next we load the required modules, and make available spack and the most recent cmake:
 
 ```
