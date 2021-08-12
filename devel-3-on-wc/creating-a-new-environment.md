@@ -10,10 +10,13 @@ HOME=/work1/accelsim/spack-shared-v2 srun -A accelsim  --cpus-per-task=20  --unb
 ```
 
 Getting access to a GPU node is sometimes not possible; there are few V100s on the cluster.
-You can instead try a CPU node:
+You can instead try an but not requesting allocation of the GPU.
+Note that this command is still using the same partition; the cpu_gce partitions has nodes with fewer cores, and nodes are rarely available.
+There is also the cpu_gce_test partition; that has a shorter time limit (1 hour by defaut, 4 hours max) and fewer cores (16 per node).
+That is a viable option.
 
 ```
-HOME=/work1/accelsim/spack-shared-v2 srun -A accelsim  --cpus-per-task=20  --unbuffered --pty  --partition=cpu_gce /bin/bash -l
+HOME=/work1/accelsim/spack-shared-v2 srun -A accelsim  --cpus-per-task=20  --unbuffered --pty  --partition=gpu_gce /bin/bash -l
 ```
 
 Next we load the required modules, and make available spack and the most recent cmake:
