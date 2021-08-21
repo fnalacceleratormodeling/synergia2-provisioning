@@ -32,6 +32,11 @@ source /work1/accelsim/spack-shared-v2/spack/share/spack/setup-env.sh
 export PATH=/work1/accelsim/spack-shared-v2/cmake-3.19.5-Linux-x86_64/bin:$PATH
 ```
 
+Next, check to see if you have any directory containing `/nashome` in your `PATH`. If you do,
+you must remove it from `PATH` before trying to create any spack environment. The presence of
+such a directory in `PATH` can lead to that directory becoming embedded in spack metadata, which
+in turn can lead to hard-to-diagnose build failures.
+
 You now have the `spack` command available on your path.
 You can use the command `spack env list` to list the spack environments currently available.
 
