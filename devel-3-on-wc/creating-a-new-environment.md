@@ -21,6 +21,13 @@ cd /work1/accelsim/spack-shared-v2     # NB: Never run 'srun' from your /nashome
 HOME=/work1/accelsim/spack-shared-v2 srun -A accelsim  --cpus-per-task=20  --unbuffered --pty  --partition=gpu_gce /bin/bash -l
 ```
 
+**Aside: what we don't want `spack` to build**
+
+> The directory `$HOME/.spack` contains the file `packages.yaml`. This file contains a number of
+> specs identifying packages that already exist on the system, and which we would prefer to have
+> spack not build. Be careful when you modify this file, because you might break environments
+> built previous to your modification.
+
 Next, check to see if you have any directory containing `/nashome` in your `PATH`. If you do,
 you must remove it from `PATH` before trying to create any spack environment. The presence of
 such a directory in `PATH` can lead to that directory becoming embedded in spack metadata, which
