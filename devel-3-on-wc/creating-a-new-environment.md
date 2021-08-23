@@ -6,6 +6,7 @@ The following command, run from `wc.fnal.gov`, obtains an interactive shell on
 an appropriate worker node (with a V100 GPU).
 
 ```
+cd /work1/accelsim/spack-shared-v2     # NB: Never run 'srun' from your /nashome home directory!
 HOME=/work1/accelsim/spack-shared-v2 srun -A accelsim  --cpus-per-task=20  --unbuffered --pty  --partition=gpu_gce --constraint=v100 --gres=gpu:1  /bin/bash -l
 ```
 
