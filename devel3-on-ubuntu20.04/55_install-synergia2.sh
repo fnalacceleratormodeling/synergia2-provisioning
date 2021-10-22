@@ -146,10 +146,9 @@ else
 fi
 if [ -n "\${PYTHONPATH}" ]
 then
-    #export PYTHONPATH=${SYNINSTALL}/lib:${SYNINSTALL}/lib/${PY_VER}/site-packages:\${PYTHONPATH}
-    export PYTHONPATH=${SYNBLD}/src:\${PYTHONPATH}
+    export PYTHONPATH=${SYNINSTALL}/lib:${SYNINSTALL}/lib/${PY_VER}/site-packages:\${PYTHONPATH}
 else
-    export PYTHONPATH=${SYNBLD}/src
+    export PYTHONPATH=${SYNINSTALL}/lib/${PY_VER}/site-packages
 fi
 EOF
 
