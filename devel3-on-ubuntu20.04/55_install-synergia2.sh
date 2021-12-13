@@ -148,8 +148,9 @@ if [ -n "\${PYTHONPATH}" ]
 then
     export PYTHONPATH=${SYNINSTALL}/lib:${SYNINSTALL}/lib/${PY_VER}/site-packages:\${PYTHONPATH}
 else
-    export PYTHONPATH=${SYNINSTALL}/lib/${PY_VER}/site-packages
+    export PYTHONPATH=${SYNINSTALL}/lib:${SYNINSTALL}/lib/${PY_VER}/site-packages
 fi
+export SYNERGIA2DIR=${SYNINSTALL}/lib
 EOF
 
 echo "or source file ${SYNINSTALL}/bin/setup.sh"
