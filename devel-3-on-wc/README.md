@@ -36,3 +36,11 @@ spack env activate synergia-dev-005
 
 This establishes the environment in which you can build Synergia.
 
+The commands are collected in the file @setup-env.sh@ which should be sourced
+before building or running Synergia applications.
+
+Directories in this project are:
+
+* @devel3-cpu@ CPU only
+* @devel3-gpu# GPU and CPU
+
