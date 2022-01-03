@@ -41,6 +41,6 @@ before building or running Synergia applications.
 
 Directories in this project are:
 
-* @devel3-cpu@ CPU only
-* @devel3-gpu# GPU and CPU
+* `devel3-cpu` CPU only
+* `devel3-gpu` GPU and CPU
 
