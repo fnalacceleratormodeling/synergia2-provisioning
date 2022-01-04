@@ -91,7 +91,7 @@ then
 
 
 CC=gcc CXX=g++ \
-cmake -DCMAKE_INSTALL_PREFIX=/work1/accelsim/egstern/devel3-v100/install \
+cmake -DCMAKE_INSTALL_PREFIX=${SYNINSTALL} \
   -DCMAKE_BUILD_TYPE=Release \
   -DPYTHON_EXECUTABLE=${PY_EXE} \
   -DKokkos_ENABLE_OPENMP=on \
