@@ -1,9 +1,9 @@
 # Put whatever name makes sense for the image here. No spaces or funny
 # characters.
-NAME = fnalacceleratormodeling/synergia3
+NAME = fnalacceleratormodeling/ubuntu20.04-synergia3
 
 # Remember to increment VERSION as you make new versions.
-VERSION = 0.0.4
+VERSION = 0.0.5
 
 .PHONY: all build tag_latest release test shell
 
