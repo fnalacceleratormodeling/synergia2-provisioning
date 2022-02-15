@@ -23,6 +23,7 @@ RUN apt-get update -y \
         python3-pyparsing \
         python3-pyqt5 \
         python3-tables \
+        python3-pytest \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
   

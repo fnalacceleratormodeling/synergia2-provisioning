@@ -3,7 +3,7 @@
 NAME = fnalacceleratormodeling/ubuntu20.04-synergia3
 
 # Remember to increment VERSION as you make new versions.
-VERSION = 0.0.5
+VERSION = 0.0.6
 
 .PHONY: all build tag_latest release test shell
 
