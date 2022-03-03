@@ -70,7 +70,7 @@ then
 
     if [ $download -ne 0 ]
     then
-        if git clone -b devel3 --recurse-submodules https://bitbucket.org/fnalacceleratormodeling/synergia2.git |& tee synergia2.git-clone.out
+        if git clone -b devel3 --recurse-submodules https://github.com/fnalacceleratormodeling/synergia2.git |& tee synergia2.git-clone.out
         then
             echo "You got synergia2!"
         else
@@ -136,6 +136,13 @@ cat >${SYNINSTALL}/bin/setup.sh <<EOF
 #!/bin/bash
 
 # load the mpi module
+module load gnu9
+module load openmpi3
+module load texlive/2019
+source /work1/accelsim/spack-shared-v2/spack/share/spack/setup-env.sh
+export PATH=/work1/accelsim/spack-shared-v2/cmake-3.19.5-Linux-x86_64/bin:$PATH
+spack env activate synergia-dev-010
+
 
 PATH=${SYNINSTALL}/bin:\${PATH}
 if [ -n "\${LD_LIBRARY_PATH}" ]
