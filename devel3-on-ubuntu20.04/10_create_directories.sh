@@ -28,7 +28,7 @@ then
 fi
 
 # the python executable
-PY_EXE=/usr/bin/python3
+PY_EXE=`which python3`
 
 # the name of the directory under which site-packages will be installed
 export PY_VER=$( ${PY_EXE} -c 'import sys; print("python{}.{}".format(sys.version_info.major, sys.version_info.minor))' )

@@ -1,8 +1,11 @@
-#!/bin/sh
+#!/bin/bash
 # Create the directories and set environment variables
 
+# activate the conda environment that works for this build
+conda activate synergia-base
+
 # The following directory will be the top level of the Synergia build tree
-SYNHOME=${HOME}/syn2-devel3-mamba
+SYNHOME=${HOME}/syn2-devel3
 
 mkdir -p ${SYNHOME}/src
 export SRC=${SYNHOME}/src

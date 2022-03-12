@@ -132,25 +132,6 @@ echo "Define these environment variables:"
 echo "LD_LIBRARY_PATH=${LD_LIBRARY_PATH}"
 echo "PYTHONPATH=${PYTHONPATH}"
 
-cat >${SYNINSTALL}/bin/setup.sh <<EOF
-#!/bin/bash
-
-# load the mpi module
-
-PATH=${SYNINSTALL}/bin:\${PATH}
-if [ -n "\${LD_LIBRARY_PATH}" ]
-then
-    export LD_LIBRARY_PATH=${SYNINSTALL}/lib:\${LD_LIBRARY_PATH}
-else
-    export LD_LIBRARY_PATH=${SYNINSTALL}/lib
-fi
-if [ -n "\${PYTHONPATH}" ]
-then
-    export PYTHONPATH=${SYNINSTALL}/lib:${SYNINSTALL}/lib/${PY_VER}/site-packages:\${PYTHONPATH}
-else
-    export PYTHONPATH=${SYNINSTALL}/lib:${SYNINSTALL}/lib/${PY_VER}/site-packages
-fi
-export SYNERGIA2DIR=${SYNINSTALL}/lib
-EOF
+bash ./57_write-setup.sh
 
 echo "or source file ${SYNINSTALL}/bin/setup.sh"

@@ -70,7 +70,7 @@ then
 
     if [ $download -ne 0 ]
     then
-        if git clone -b devel3 --recurse-submodules https://bitbucket.org/fnalacceleratormodeling/synergia2.git |& tee synergia2.git-clone.out
+        if git clone -b devel3 --recurse-submodules https://github.com/fnalacceleratormodeling/synergia2.git |& tee synergia2.git-clone.out
         then
             echo "You got synergia2!"
         else
