@@ -8,8 +8,14 @@ conda create --name synergia-base numpy matplotlib future gsl mpi4py mpi cxx-com
 </pre>
 
 * Adjust the target directory in the file @10_create_directories.sh@
-* Download and build Synergia 3 by sourcing the file @55_install-synergia2.sh@
+* Download and build Synergia 3 executing the file @55_install-synergia2.sh@
 
 <pre>
-. 55_install-synergia2.sh
+bash 55_install-synergia2.sh
+</pre>
+
+Write the setup file.
+
+<pre>
+bash 57_write-setup-file.sh
 </pre>
