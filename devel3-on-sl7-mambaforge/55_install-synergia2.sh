@@ -132,6 +132,4 @@ echo "Define these environment variables:"
 echo "LD_LIBRARY_PATH=${LD_LIBRARY_PATH}"
 echo "PYTHONPATH=${PYTHONPATH}"
 
-bash ./57_write-setup.sh
-
 echo "or source file ${SYNINSTALL}/bin/setup.sh"

@@ -2,6 +2,10 @@
 # Create the directories and set environment variables
 
 # activate the conda environment that works for this build
+if [ -f ~/.bashrc ]
+then
+    . ~/.bashrc
+fi
 conda activate synergia-base
 
 # The following directory will be the top level of the Synergia build tree
