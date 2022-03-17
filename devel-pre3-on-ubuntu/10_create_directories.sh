@@ -2,7 +2,7 @@
 # Create the directories and set environment variables
 
 # The following directory will be the top level of the Synergia build tree
-SYNHOME=${HOME}/syn2-devel-pre3-test
+SYNHOME=${HOME}/fnal/syn2-devel-pre3
 
 mkdir -p ${SYNHOME}/src
 export SRC=${SYNHOME}/src
