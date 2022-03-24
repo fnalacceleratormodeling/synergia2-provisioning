@@ -109,7 +109,7 @@ cmake -DCMAKE_INSTALL_PREFIX=${SYNINSTALL} \
         exit 10
     fi
 
-    make -j 2 VERBOSE=t |& tee synergia2.make.out
+    make -j 8 VERBOSE=t |& tee synergia2.make.out
     if [ $? -eq 0 ]
     then
         echo "Congratulations!! synergia2 is make worked !!!"

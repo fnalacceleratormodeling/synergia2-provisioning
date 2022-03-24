@@ -70,7 +70,7 @@ then
 
     if [ $download -ne 0 ]
     then
-        if git clone -b devel3 --recurse-submodules https://bitbucket.org/fnalacceleratormodeling/synergia2.git |& tee synergia2.git-clone.out
+        if git clone -b devel3 --recurse-submodules https://github.com/fnalacceleratormodeling/synergia2.git |& tee synergia2.git-clone.out
         then
             echo "You got synergia2!"
         else
@@ -90,6 +90,14 @@ then
     cd ${SYNBLD}
 
 
+# If you are not building on a host with the GPU you
+# must give the architecture in the cmake line, such as
+# for V100:
+#  -DKokkos_ARCH_VOLTA70=on
+#  -DCMAKE_CXX_FLAGS="-arch=sm_70"
+#
+# otherwise it should be automatically detected.
+
 CC=gcc CXX=g++ \
 cmake -DCMAKE_INSTALL_PREFIX=${SYNINSTALL} \
   -DCMAKE_BUILD_TYPE=Release \
@@ -97,6 +105,7 @@ cmake -DCMAKE_INSTALL_PREFIX=${SYNINSTALL} \
   -DKokkos_ENABLE_OPENMP=on \
   -DKokkos_ENABLE_CUDA=on \
   -DALLOW_PADDING=off \
+  -DGSV=DOUBLE \
   -DCMAKE_CXX_COMPILER=${SYNSRC}/src/synergia/utils/kokkos/bin/nvcc_wrapper \
    ${SYNSRC} |& tee synergia2.cmake.out
 
@@ -128,29 +137,8 @@ cmake -DCMAKE_INSTALL_PREFIX=${SYNINSTALL} \
 
 fi # if make_synergia2
 
-echo "Define these environment variables:"
-echo "LD_LIBRARY_PATH=${LD_LIBRARY_PATH}"
-echo "PYTHONPATH=${PYTHONPATH}"
 
-cat >${SYNINSTALL}/bin/setup.sh <<EOF
-#!/bin/bash
+echo "Creating file ${SYNINSTALL}/bin/setup.sh with script 65_write_setupsh.sh"
+echo "source this file for the proper environment"
 
-# load the mpi module
-
-PATH=${SYNINSTALL}/bin:\${PATH}
-if [ -n "\${LD_LIBRARY_PATH}" ]
-then
-    export LD_LIBRARY_PATH=${SYNINSTALL}/lib:${SYNINSTALL}/lib64:\${LD_LIBRARY_PATH}
-else
-    export LD_LIBRARY_PATH=${SYNINSTALL}/lib:${SYNINSTALL}/lib64
-fi
-if [ -n "\${PYTHONPATH}" ]
-then
-    export PYTHONPATH=${SYNINSTALL}/lib:${SYNINSTALL}/lib/${PY_VER}/site-packages:\${PYTHONPATH}
-else
-    export PYTHONPATH=${SYNINSTALL}/lib:${SYNINSTALL}/lib/${PY_VER}/site-packages
-fi
-export SYNERGIA2DIR=${SYNINSTALL}/lib
-EOF
-
-echo "or source file ${SYNINSTALL}/bin/setup.sh"
+bash 65_write_setupsh.sh
