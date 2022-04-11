@@ -138,7 +138,7 @@ cmake -DCMAKE_INSTALL_PREFIX=${SYNINSTALL} \
 fi # if make_synergia2
 
 
-echo "Creating file ${SYNINSTALL}/bin/setup.sh with script 65_write_setupsh.sh"
-echo "source this file for the proper environment"
+echo "Now create the setup script ${SYNINSTALL}/bin/setup.sh"
+echo  "by executing 65_write_setupsh.sh"
+echo "The setup script will configure the proper environment for running Synergia jobs"
 
-bash 65_write_setupsh.sh
