@@ -70,7 +70,7 @@ int main() {
     std::cout << "Add these arguments to the CMake command:" << std::endl;
     std::cout << "  -DCMAKE_CXX_FLAGS=\"-arch=sm_" ;
     std::cout << device_properties.major << device_properties.minor;
-    std::cout << " \\" << std::endl;
+    std::cout << "\" \\" << std::endl;
     switch (compute_capability) {
       // clang-format off
     case 30: std::cout << " -DKokkos_ARCH_KEPLER30=ON \\" << std::endl; break;
