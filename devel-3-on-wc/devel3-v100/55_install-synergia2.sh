@@ -90,16 +90,27 @@ then
     cd ${SYNBLD}
 
 
+# If you are not building on a host with the GPU you
+# must give the architecture in the cmake line, such as
+# for V100:
+#  -DKokkos_ARCH_VOLTA70=on
+#  -DCMAKE_CXX_FLAGS="-arch=sm_70"
+#
+# otherwise it should be automatically detected.
+
 CC=gcc CXX=g++ \
 cmake -DCMAKE_INSTALL_PREFIX=${SYNINSTALL} \
   -DCMAKE_BUILD_TYPE=Release \
-  -DKokkos_ENABLE_CUDA=off \
-  -DKokkos_ENABLE_OPENMP=on \
-  -DALLOW_PADDING=on \
-  -DBUILD_PYTHON_BINDINGS=on \
   -DPYTHON_EXECUTABLE=${PY_EXE} \
-  -DSIMPLE_TIMER=OFF \
+  -DKokkos_ENABLE_OPENMP=on \
+  -DKokkos_ENABLE_CUDA=on \
+  -DALLOW_PADDING=off \
+  -DGSV=DOUBLE \
+  -DKokkos_ARCH_VOLTA70=on \
+  -DCMAKE_CXX_FLAGS="-arch=sm_70" \
+  -DCMAKE_CXX_COMPILER=${SYNSRC}/src/synergia/utils/kokkos/bin/nvcc_wrapper \
    ${SYNSRC} |& tee synergia2.cmake.out
+
 
     if [ $? -eq 0 ]
     then
@@ -112,7 +123,7 @@ cmake -DCMAKE_INSTALL_PREFIX=${SYNINSTALL} \
     make -j 8 VERBOSE=t |& tee synergia2.make.out
     if [ $? -eq 0 ]
     then
-        echo "Congratulations!! synergia2 is make worked !!!"
+        echo "Congratulations!! synergia2 make worked !!!"
     else
         echo "Drat!! something went wrong building synergia2"
         exit 10
@@ -128,36 +139,8 @@ cmake -DCMAKE_INSTALL_PREFIX=${SYNINSTALL} \
 
 fi # if make_synergia2
 
-echo "Define these environment variables:"
-echo "LD_LIBRARY_PATH=${LD_LIBRARY_PATH}"
-echo "PYTHONPATH=${PYTHONPATH}"
 
-cat >${SYNINSTALL}/bin/setup.sh <<EOF
-#!/bin/bash
+echo "Creating file ${SYNINSTALL}/bin/setup.sh with script 65_write_setupsh.sh"
+echo "source this file for the proper environment"
 
-# load the mpi module
-module load gnu9
-module load openmpi3
-module load texlive/2019
-source /work1/accelsim/spack-shared-v2/spack/share/spack/setup-env.sh
-export PATH=/work1/accelsim/spack-shared-v2/cmake-3.19.5-Linux-x86_64/bin:$PATH
-spack env activate synergia-dev-010
-
-
-PATH=${SYNINSTALL}/bin:\${PATH}
-if [ -n "\${LD_LIBRARY_PATH}" ]
-then
-    export LD_LIBRARY_PATH=${SYNINSTALL}/lib:${SYNINSTALL}/lib64:\${LD_LIBRARY_PATH}
-else
-    export LD_LIBRARY_PATH=${SYNINSTALL}/lib:${SYNINSTALL}/lib64
-fi
-if [ -n "\${PYTHONPATH}" ]
-then
-    export PYTHONPATH=${SYNINSTALL}/lib:${SYNINSTALL}/lib/${PY_VER}/site-packages:\${PYTHONPATH}
-else
-    export PYTHONPATH=${SYNINSTALL}/lib:${SYNINSTALL}/lib/${PY_VER}/site-packages
-fi
-export SYNERGIA2DIR=${SYNINSTALL}/lib
-EOF
-
-echo "or source file ${SYNINSTALL}/bin/setup.sh"
+bash 65_write_setupsh.sh

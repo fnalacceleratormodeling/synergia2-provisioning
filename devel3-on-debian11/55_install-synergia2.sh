@@ -109,7 +109,7 @@ cmake -DCMAKE_INSTALL_PREFIX=${SYNINSTALL} \
         exit 10
     fi
 
-    make -j 8 VERBOSE=t |& tee synergia2.make.out
+    make -j 1 VERBOSE=t |& tee synergia2.make.out
     if [ $? -eq 0 ]
     then
         echo "Congratulations!! synergia2 is make worked !!!"
@@ -136,20 +136,13 @@ cat >${SYNINSTALL}/bin/setup.sh <<EOF
 #!/bin/bash
 
 # load the mpi module
-module load gnu9
-module load openmpi3
-module load texlive/2019
-source /work1/accelsim/spack-shared-v2/spack/share/spack/setup-env.sh
-export PATH=/work1/accelsim/spack-shared-v2/cmake-3.19.5-Linux-x86_64/bin:$PATH
-spack env activate synergia-dev-010
-
 
 PATH=${SYNINSTALL}/bin:\${PATH}
 if [ -n "\${LD_LIBRARY_PATH}" ]
 then
-    export LD_LIBRARY_PATH=${SYNINSTALL}/lib:${SYNINSTALL}/lib64:\${LD_LIBRARY_PATH}
+    export LD_LIBRARY_PATH=${SYNINSTALL}/lib:\${LD_LIBRARY_PATH}
 else
-    export LD_LIBRARY_PATH=${SYNINSTALL}/lib:${SYNINSTALL}/lib64
+    export LD_LIBRARY_PATH=${SYNINSTALL}/lib
 fi
 if [ -n "\${PYTHONPATH}" ]
 then

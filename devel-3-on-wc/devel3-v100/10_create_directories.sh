@@ -13,7 +13,7 @@ spack env activate synergia-dev-010
 # The following directory will be the top level of the Synergia build tree
 #SYNHOME=${HOME}/syn2-devel3-v100
 # alternative location:
-SYNHOME=${WORKDIR}/devel3-v100
+SYNHOME=${WORKDIR}/devel3-v100-test
 
 mkdir -p ${SYNHOME}/src
 export SRC=${SYNHOME}/src
