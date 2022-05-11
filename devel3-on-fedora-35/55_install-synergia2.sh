@@ -95,7 +95,7 @@ CC=gcc CXX=g++ \
 cmake -DCMAKE_INSTALL_PREFIX=${SYNINSTALL} \
   -DCMAKE_BUILD_TYPE=Release \
   -DENABLE_CUDA=off \
-  -DKokkos_ENABLE_OPENMP=on \
+  -ENABLE_OPENMP=on \
   -DALLOW_PADDING=on \
   -DBUILD_PYTHON_BINDINGS=on \
   -DFFTW3_INCLUDE_DIR=/usr/include \
