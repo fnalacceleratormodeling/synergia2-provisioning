@@ -12,10 +12,10 @@
 
 # basic setup
 source /wclustre/accelsim/powerpc/spack/share/spack/setup-env.sh
-# no .spack configs!
+# no .spack configs
 export SPACK_DISABLE_LOCAL_CONFIG=true
 export SPACK_USER_CACHE_PATH=/tmp/spack
-# Load python and set it as spack-python!
+# Use a spack built python as spack-python
 export SPACK_PYTHON=/wclustre/accelsim/powerpc/spack/opt/spack/linux-rhel7-power8le/gcc-4.8.5/python-3.9.12-rc7oli4gpfgq5ftlc5exh4nnbarbp6fy/bin/python
 
 # load the compiler
@@ -31,5 +31,8 @@ spack load py-pybind11%clang@14.0.3
 spack load cereal%clang@14.0.3
 spack load cmake%clang@14.0.3
 
+# Move to the relevant directory containing the example
 cd /wclustre/accelsim/powerpc/synergia2/build/examples/fodo_cxx
+
+# Launch the job with srun, using `--mpi=pmix_v3` which is necessary
 srun --mpi=pmix_v3 fodo_cxx
