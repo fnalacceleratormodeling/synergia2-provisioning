@@ -93,7 +93,7 @@ then
 CC=gcc CXX=g++ \
 cmake -DCMAKE_INSTALL_PREFIX=${SYNINSTALL} \
   -DCMAKE_BUILD_TYPE=Release \
-  -DKokkos_ENABLE_CUDA=off \
+  -DENABLE_CUDA=off \
   -DKokkos_ENABLE_OPENMP=on \
   -DALLOW_PADDING=on \
   -DBUILD_PYTHON_BINDINGS=on \

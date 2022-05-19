@@ -55,7 +55,7 @@ then
         -DCMAKE_INSTALL_PREFIX:PATH=${SYNINSTALL} \
         -DPYTHON_EXECUTABLE=${PY3_EXE} \
         -DKokkos_ENABLE_OPENMP=1 \
-        -DKokkos_ENABLE_CUDA=0 \
+        -DENABLE_CUDA=0 \
         -DALLOW_PADDING=1 \
         ${SYNSRC} |& tee synergia2.cmake.out
     then

@@ -98,8 +98,8 @@ then
 	  -DBUILD_PYTHON_BINDINGS=on \
 	  -DPYTHON_EXECUTABLE=${PY_EXE} \
           -DEIGEN3_INCLUDE_DIR=${SYNINSTALL}/include/eigen3 \
-	  -DKokkos_ENABLE_OPENMP=1 \
-	  -DKokkos_ENABLE_CUDA=1 \
+	  -ENABLE_OPENMP=1 \
+	  -DENABLE_CUDA=1 \
 	  -DALLOW_PADDING=0 \
 	  -DSIMPLE_TIMER=on \
 	  ${SYNSRC} > synergia2.cmake_command
@@ -110,8 +110,8 @@ then
 	  -DBUILD_PYTHON_BINDINGS=on \
 	  -DPYTHON_EXECUTABLE=${PY_EXE} \
           -DEIGEN3_INCLUDE_DIR=${SYNINSTALL}/include/eigen3 \
-	  -DKokkos_ENABLE_OPENMP=1 \
-	  -DKokkos_ENABLE_CUDA=1 \
+	  -ENABLE_OPENMP=1 \
+	  -DENABLE_CUDA=1 \
 	  -DALLOW_PADDING=0 \
 	  -DSIMPLE_TIMER=on \
 	  ${SYNSRC} |& tee synergia2.cmake.out

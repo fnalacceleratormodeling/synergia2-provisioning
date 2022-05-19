@@ -101,8 +101,8 @@ CC=gcc CXX=g++ \
 scl enable gcc-toolset-9 "cmake -DCMAKE_INSTALL_PREFIX=${SYNINSTALL} \
   -DFFTW3_INCLUDE_DIR=${FFTW_INC} -DFFTW3_LIBRARIES=${FFTW_DIR}/lib/libfftw3.so -DFFTW3_MPI_LIBRARIES=${FFTW_DIR}/lib/libfftw3_mpi.so -DFFTW3_OMP_LIBRARIES=${FFTW_DIR}/lib/libfftw3_omp.so \
   -DCMAKE_BUILD_TYPE=Release \
-  -DKokkos_ENABLE_CUDA=on \
-  -DKokkos_ENABLE_OPENMP=on \
+  -DENABLE_CUDA=on \
+  -ENABLE_OPENMP=on \
   -DALLOW_PADDING=off \
   -DGSV=DOUBLE \
   -DKokkos_ARCH_VOLTA70=on \
