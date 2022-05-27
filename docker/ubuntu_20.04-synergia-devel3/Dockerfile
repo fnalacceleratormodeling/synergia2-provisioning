@@ -52,7 +52,7 @@ RUN mkdir ${SRC} \
 WORKDIR ${SRC}
 RUN echo "echo there"
 
-RUN git clone -b devel3 --recursive https://bitbucket.org/fnalacceleratormodeling/synergia2.git \
+RUN git clone -b devel3 --recursive https://github.com/fnalacceleratormodeling/synergia2.git \
   && mkdir ${BLD}/synergia2
 WORKDIR ${BLD}/synergia2
 
