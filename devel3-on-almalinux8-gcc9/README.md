@@ -1,7 +1,12 @@
-# Building Synergia2 devel3 branch on the an EL8 (CentOS8, AlmaLinux8) machine with using gcc9 from gcc-toolset-9 and installed packages
+# Building Synergia2 devel3 branch on the an EL8 (CentOS8, AlmaLinux8) machine using gcc9 from gcc-toolset-9 and installed packages
 
 These scripts will build the devel3 branch of Synergia on
-an EL8 based system using all packages installed from rpms.
+an EL8 based system using most packages installed from rpms except for
+ MPI/OpenMP enabled FFTW3.
+Packages come from the `powertools`,  `plus` and `EPEL` repositories.
+
+With the use of `std::filesystem`, the serialization code will no longer
+build with gcc version below 9 so we use compile with gcc-toolset-9 packages.
 
 Adjust the install directory in the file 10_create_directories.sh.
 This file is sourced by the other files.  The default installation directory
