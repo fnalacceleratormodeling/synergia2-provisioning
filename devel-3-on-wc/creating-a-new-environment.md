@@ -92,6 +92,18 @@ the same level as does the `specs` entry:
     spack:
         concretization: together
 
+**Note 1a** Doing this yields this message:
+```
+==> Warning: concretization:together is deprecated and will be removed in Spack 0.19 in favor of the new concretizer:unify:true config option.
+```
+Starting with the Spack version 0.18 and later the proper syntax is:
+
+    spack:
+        concretizer:
+	    unify: true
+
+The default value for newly created environments appears to be `false`.
+
 **Note 2** The `spack concretize` command is very likely to produce one or more warnings.
 Warnings of the form:
 
