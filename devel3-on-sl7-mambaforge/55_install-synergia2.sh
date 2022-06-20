@@ -13,6 +13,7 @@ fi
 export SYNSRC=${SRC}/synergia2
 
 make_synergia2=true
+build_system="make"
 
 overwrite=0
 reinstall=0
@@ -89,9 +90,19 @@ then
     mkdir -p ${SYNBLD}
     cd ${SYNBLD}
 
+if [ "$build_system" = "make" ]
+then
+    generator="Unix Makefiles"
+elif [ "$build_system" = "ninja" ]
+then
+    generator="Ninja"
+else
+    echo "unknown build system: $build_system"
+    exit 10
+fi
 
 CC=gcc CXX=g++ \
-cmake -DCMAKE_INSTALL_PREFIX=${SYNINSTALL} \
+cmake -G"$generator" -DCMAKE_INSTALL_PREFIX=${SYNINSTALL} \
   -DCMAKE_BUILD_TYPE=Release \
   -DENABLE_CUDA=off \
   -ENABLE_OPENMP=on \
@@ -109,7 +120,13 @@ cmake -DCMAKE_INSTALL_PREFIX=${SYNINSTALL} \
         exit 10
     fi
 
-    make -j 2 VERBOSE=t |& tee synergia2.make.out
+    if [ "$build_system" = "make" ]
+    then
+        make -j 2 VERBOSE=t |& tee synergia2.make.out
+    elif [ "$build_system" = "ninja" ]
+    then
+        ninja |& tee synergia2.ninja.out
+    fi
     if [ $? -eq 0 ]
     then
         echo "Congratulations!! synergia2 is make worked !!!"
