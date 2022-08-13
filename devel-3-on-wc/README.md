@@ -12,6 +12,10 @@ You also should specify `--constraint` to get the type of GPU you are looking fo
 ```
 HOME=/work1/accelsim/$(id -un) srun -A accelsim  --cpus-per-task=20  --unbuffered --pty  --partition=gpu_gce --constraint=v100 --gres=gpu:1  /bin/bash -l
 ```
+## Useful SLURM commands
+
+Allocating worker nodes and scheduling jobs on them is controlled by the SLURM resource management system.
+An overview with specific Wilson Cluster information is [here](https://computing.fnal.gov/wilsoncluster/slurm-job-scheduler/).
 
 ## Set up the working environment
 
