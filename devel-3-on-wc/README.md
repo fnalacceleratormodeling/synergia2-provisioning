@@ -16,6 +16,7 @@ HOME=/work1/accelsim/$(id -un) srun -A accelsim  --cpus-per-task=20  --unbuffere
 
 Allocating worker nodes and scheduling jobs on them is controlled by the SLURM resource management system.
 An overview with specific Wilson Cluster information is [here](https://computing.fnal.gov/wilsoncluster/slurm-job-scheduler/).
+Some example commands for running jobs are [here](wc-slurm-commands.md).
 
 ## Set up the working environment
 
@@ -35,7 +36,7 @@ We have used a *spack environment* to obtain a consistent set of modules.
 most recent to set up.
 
 ```
-spack env activate synergia-dev-005
+spack env activate synergia-dev-010
 ```
 
 This establishes the environment in which you can build Synergia.
