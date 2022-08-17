@@ -16,7 +16,9 @@ HOME=/work1/accelsim/$(id -un) srun -A accelsim  --cpus-per-task=20  --unbuffere
 
 Allocating worker nodes and scheduling jobs on them is controlled by the SLURM resource management system.
 An overview with specific Wilson Cluster information is [here](https://computing.fnal.gov/wilsoncluster/slurm-job-scheduler/).
-Some example commands for running jobs are [here](wc-slurm-commands.md).
+Some example commands for running jobs are [here](slurm-commands.md).
+
+
 
 ## Set up the working environment
 
