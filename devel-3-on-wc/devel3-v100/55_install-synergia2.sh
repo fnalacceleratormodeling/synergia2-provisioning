@@ -102,15 +102,12 @@ CC=gcc CXX=g++ \
 cmake -DCMAKE_INSTALL_PREFIX=${SYNINSTALL} \
   -DCMAKE_BUILD_TYPE=Release \
   -DPYTHON_EXECUTABLE=${PY_EXE} \
-  -DKokkos_ENABLE_OPENMP=on \
-  -DENABLE_CUDA=on \
-  -DALLOW_PADDING=off \
+  -DBUILD_FD_SPACE_CHARGE_SOLVER=ON \
+  -DENABLE_KOKKOS_BACKEND=CUDA \
+  -DUSE_EXTERNAL_KOKKOS=ON \
+  -DALLOW_PADDING=OFF \
   -DGSV=DOUBLE \
-  -DKokkos_ARCH_VOLTA70=on \
-  -DCMAKE_CXX_FLAGS="-arch=sm_70" \
-  -DCMAKE_CXX_COMPILER=${SYNSRC}/src/synergia/utils/kokkos/bin/nvcc_wrapper \
    ${SYNSRC} |& tee synergia2.cmake.out
-
 
     if [ $? -eq 0 ]
     then

@@ -1,14 +1,11 @@
 #!/bin/sh
 # Create the directories and set environment variables
 
-module load cuda11
-module load gnu9
-module load openmpi3
-source /work1/accelsim/spack-shared-v2/spack/share/spack/setup-env.sh
-export PATH=/work1/accelsim/spack-shared-v2/cmake-3.19.5-Linux-x86_64/bin:$PATH
+module purge > /dev/null 2>&1
+module load git
+module load gnu11
 
-spack env activate synergia-dev-010
-
+source /wclustre/accelsim/spack-shared-v3/setup_env_synergia-devel3-p100-001.sh
 
 # The following directory will be the top level of the Synergia build tree
 #SYNHOME=${HOME}/syn2-devel3-v100
