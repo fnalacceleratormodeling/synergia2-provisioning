@@ -33,20 +33,20 @@ max number of threads is 16
 The value of _OPENMP is 201511
 ```
 
-### To run MPI jobs you should supply the `--mpi=pmix` parameter
+### To run MPI jobs you should supply the `--mpi=pmix_v3` parameter
 ```
-HOME=${WORKDIR} srun -A accelsim -N 1 -n 1 --cpus-per-task=16 -p cpu_gce --mpi=pmix ${WORKDIR}/what_is_omp_num_threads
+HOME=${WORKDIR} srun -A accelsim -N 1 -n 1 --cpus-per-task=16 -p cpu_gce --mpi=pmix_v3 ${WORKDIR}/what_is_omp_num_threads
 ```
 
 ### Here is how you would run the `fodo_cxx` executable from the head node.
 ```
-HOME=${WORKDIR} srun -A accelsim -N 1 -n 1 --cpus-per-task=16 -p cpu_gce --mpi=pmix ${WORKDIR}/devel3-cpu/build/synergia2/examples/fodo_cxx/fodo_cxx
+HOME=${WORKDIR} srun -A accelsim -N 1 -n 1 --cpus-per-task=16 -p cpu_gce --mpi=pmix_v3 ${WORKDIR}/devel3-cpu/build/synergia2/examples/fodo_cxx/fodo_cxx
 ```
 This runs on one 16 core CPU box with 1 MPI task using 16 threads. The run environment has to be set up prior to running this command.
 
 ### Run the two MPI tasks of same executable, each getting 8 threads.
  ```
- HOME=${WORKDIR} srun -A accelsim -N 1 -n 2 --cpus-per-task=8 -p cpu_gce --mpi=pmix ${WORKDIR}/devel3-cpu/build/synergia2/examples/fodo_cxx/fodo_cxx
+ HOME=${WORKDIR} srun -A accelsim -N 1 -n 2 --cpus-per-task=8 -p cpu_gce --mpi=pmix_v3 ${WORKDIR}/devel3-cpu/build/synergia2/examples/fodo_cxx/fodo_cxx
 ```
 
 ### Accessing the node with Pascal GPU and NVLINK
@@ -56,7 +56,7 @@ HOME=${WORKDIR} srun -A accelsim -N 1 --cpus-per-task=28 -p gpu_gce  --constrain
 
 ### Running `ctest` on the GPU node
 ```
-HOME=${WORKDIR} srun -A accelsim -N 1  --cpus-per-task=4 -p gpu_gce --constraint=v100 --gres=gpu:1 --mpi=pmix ctest
+HOME=${WORKDIR} srun -A accelsim -N 1  --cpus-per-task=4 -p gpu_gce --constraint=v100 --gres=gpu:1 --mpi=pmix_v3 ctest
 ```
 You need to set up the environment beforehand, and `cd` to `build/synergia2`.
 
@@ -65,7 +65,7 @@ You need to set up the environment beforehand, and `cd` to `build/synergia2`.
 Note that unlike ctest, the simulation program won't work unless you have a reservation because the GPU libraries only become available after a reservation is requested.
 ```
 salloc -A accelsim -N 1 -n 1 -p gpu_gce --constraint=v100 --gres=gpu:1
-srun -A accelsim -N 1 -n 1 --mpi=pmix -p gpu_gce --constraint=v100 --gres=gpu:1 fodo_cxx
+srun -A accelsim -N 1 -n 1 --mpi=pmix_v3 -p gpu_gce --constraint=v100 --gres=gpu:1 fodo_cxx
 ```
 Sample output:
 ```
@@ -73,7 +73,7 @@ Sample output:
 salloc: Granted job allocation 317633
 'abrt-cli status' timed out
 
-[egstern@wc fodo_cxx]$ srun -A accelsim -N 1 -n 1 --mpi=pmix -p gpu_gce --constraint=v100 --gres=gpu:1 fodo_cxx
+[egstern@wc fodo_cxx]$ srun -A accelsim -N 1 -n 1 --mpi=pmix_v3 -p gpu_gce --constraint=v100 --gres=gpu:1 fodo_cxx
 Kokkos::OpenMP::initialize WARNING: OMP_PROC_BIND environment variable not set
   In general, for best performance with OpenMP 4.0 or better set OMP_PROC_BIND=spread and OMP_PLACES=threads
   For best performance with OpenMP 3.1 set OMP_PROC_BIND=true
@@ -105,11 +105,11 @@ Propagator: total time = 0.611s
 
 ### You can also run ctest with the GPU version
 ```
-srun -A accelsim -N 1 -n 1 --mpi=pmix -p gpu_gce --constraint=v100 --gres=gpu:1 ctest
+srun -A accelsim -N 1 -n 1 --mpi=pmix_v3 -p gpu_gce --constraint=v100 --gres=gpu:1 ctest
 ```
 Sample output:
 ```
-[egstern@wc synergia2]$ srun -A accelsim -N 1 -n 1 --mpi=pmix -p gpu_gce --constraint=v100 --gres=gpu:1 ctest
+[egstern@wc synergia2]$ srun -A accelsim -N 1 -n 1 --mpi=pmix_v3 -p gpu_gce --constraint=v100 --gres=gpu:1 ctest
 Test project /work1/accelsim/egstern/devel3-v100/build/synergia2
       Start  1: test_hdf5_file_mpi_1
  1/56 Test  #1: test_hdf5_file_mpi_1 ......................   Passed    1.91 sec

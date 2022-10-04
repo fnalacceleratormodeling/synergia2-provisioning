@@ -1,10 +1,16 @@
 #!/bin/sh
 # Create the directories and set environment variables
 
+module purge > /dev/null 2>&1
+module load git
+module load gnu11
+
+source /wclustre/accelsim/spack-shared-v3/setup_env_synergia-devel3-cpu-ivybridge-001.sh
+
 # The following directory will be the top level of the Synergia build tree
 #SYNHOME=${HOME}/syn2-devel3-cpu
 # alternative location:
-SYNHOME=${WORKDIR}/devel3-cpu
+SYNHOME=${WORKDIR}/devel3-cpu-test
 
 mkdir -p ${SYNHOME}/src
 export SRC=${SYNHOME}/src

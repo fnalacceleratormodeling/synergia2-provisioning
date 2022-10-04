@@ -6,13 +6,12 @@ cat >${SYNINSTALL}/bin/setup.sh <<EOF
 #!/bin/bash
 
 # set up environment
-module load cuda11
-module load gnu9
-module load openmpi3
-export PATH=/work1/accelsim/spack-shared-v2/cmake-3.19.5-Linux-x86_64/bin:$PATH
-source /work1/accelsim/spack-shared-v2/spack/share/spack/setup-env.sh
 
-spack env activate synergia-dev-010
+module purge > /dev/null 2>&1
+module load gnu11
+
+source /wclustre/accelsim/spack-shared-v3/setup_env_synergia-devel3-p100-001.sh
+
 
 PATH=${SYNINSTALL}/bin:\${PATH}
 if [ -n "\${LD_LIBRARY_PATH}" ]
