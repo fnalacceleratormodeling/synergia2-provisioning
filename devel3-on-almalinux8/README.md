@@ -1,5 +1,33 @@
-# Building Synergia2 devel3 branch on the an EL8 (CentOS8, AlmaLinux8) machine with using gcc8 and installed packages
+# Building Synergia2 devel3 branch on the an EL8 (CentOS8, AlmaLinux8) machine using gcc9 from gcc-toolset-9 and installed packages
 
-## This directory is obsolete.
+These scripts will build the devel3 branch of Synergia on
+an EL8 based system using most packages installed from rpms except for
+ MPI/OpenMP enabled FFTW3.
+Packages come from the `powertools`,  `plus` and `EPEL` repositories.
 
-Synergia has to be built with gcc > 9.  See the scripts in devel3-on-almalinux-8-gcc9
+With the use of `std::filesystem`, the serialization code needs to be
+linked with the stdc++fs library. The synergia build script edits the file
+to make that happen.
+
+Adjust the install directory in the file 10_create_directories.sh.
+This file is sourced by the other files.  The default installation directory
+is `$HOME/syn2-devel3`.
+
+Execute files in order:
+
+```
+bash 22_install-fftw.sh
+bash 55_install-synergia.sh
+```
+
+The `55_install-synergia2.sh` script accepts an argument:
+<dl>
+    <dt> <em>overwrite</em> </dt>
+    <dd> Erases and redownloads Synergia </dd>
+    <dt> <em>reinstall</em> </dt>
+    <dd> Reconfigures without downloading (cmake), builds and installs </dd>
+</dl>
+
+The libraries and executables will be installed in the `install` subdirectory with binaries installed in `install/bin`, libraries in `install/lib` and Python modules in `install/lib/python3.6/site-packages`.
+
+The installation also creates a setup script in `install/bin/setup.sh` which should be sourced to load all the correct modules and set up path environment variables.
