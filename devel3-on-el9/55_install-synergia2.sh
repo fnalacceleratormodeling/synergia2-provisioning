@@ -90,14 +90,23 @@ then
     cd ${SYNBLD}
 
 
+
+    # options
+    # -DBUILD_PYTHON_BINDINGS=on \
+    # -DUSE_OPENPMD_IO=off \
+    # -DUSE_EXTERNAL_PYBIND11=off \    
+    # -DUSE_EXTERNAL_CEREAL=off \
+    # -DUSE_EXTERNAL_KOKKOS=off \
+    # -DBUILD_FD_SPACE_CHARGE_SOLVER \    
+
 CC=gcc CXX=g++ \
 cmake -DCMAKE_INSTALL_PREFIX=${SYNINSTALL} \
   -DCMAKE_BUILD_TYPE=Release \
-  -DENABLE_CUDA=off \
-  -DENABLE_OPENMP=on \
-  -DALLOW_PADDING=on \
-  -DBUILD_PYTHON_BINDINGS=on \
-  -DPYTHON_EXECUTABLE=${PY_EXE} \
+  -DENABLE_CUDA=OFF \
+  -DENABLE_OPENMP=ON \
+  -DUSE_EXTERNAL_OPENPMD=OFF \
+  -DUSE_OPENPMD_IO=ON \
+  -DALLOW_PADDING=ON \
   -DSIMPLE_TIMER=OFF \
    ${SYNSRC} |& tee synergia2.cmake.out
 
@@ -109,7 +118,7 @@ cmake -DCMAKE_INSTALL_PREFIX=${SYNINSTALL} \
         exit 10
     fi
 
-    make -j 2 VERBOSE=t |& tee synergia2.make.out
+    make -j 1 VERBOSE=t |& tee synergia2.make.out
     if [ $? -eq 0 ]
     then
         echo "Congratulations!! synergia2 is make worked !!!"
@@ -136,19 +145,20 @@ cat >${SYNINSTALL}/bin/setup.sh <<EOF
 #!/bin/bash
 
 # load the mpi module
+module load mpi
 
 PATH=${SYNINSTALL}/bin:\${PATH}
 if [ -n "\${LD_LIBRARY_PATH}" ]
 then
-    export LD_LIBRARY_PATH=${SYNINSTALL}/lib:\${LD_LIBRARY_PATH}
+    export LD_LIBRARY_PATH=${SYNINSTALL}/lib:${SYNINSTALL}/lib64:\${LD_LIBRARY_PATH}
 else
-    export LD_LIBRARY_PATH=${SYNINSTALL}/lib
+    export LD_LIBRARY_PATH=${SYNINSTALL}/lib:${SYNINSTALL}/lib64
 fi
 if [ -n "\${PYTHONPATH}" ]
 then
-    export PYTHONPATH=${SYNINSTALL}/lib:${SYNINSTALL}/lib/${PY_VER}/site-packages:\${PYTHONPATH}
+    export PYTHONPATH=${SYNINSTALL}/lib:${SYNINSTALL}/lib64:${SYNINSTALL}/lib/${PY_VER}/site-packages:\${PYTHONPATH}:${SYNINSTALL}/lib64/${PY_VER}/site-packages:\${PYTHONPATH}
 else
-    export PYTHONPATH=${SYNINSTALL}/lib:${SYNINSTALL}/lib/${PY_VER}/site-packages
+    export PYTHONPATH=${SYNINSTALL}/lib:${SYNINSTALL}/lib64:${SYNINSTALL}/lib/${PY_VER}/site-packages:\${PYTHONPATH}:${SYNINSTALL}/lib64/${PY_VER}/site-packages
 fi
 export SYNERGIA2DIR=${SYNINSTALL}/lib
 EOF

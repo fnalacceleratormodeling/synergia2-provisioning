@@ -26,9 +26,9 @@ if echo ${LD_LIBRARY_PATH} | grep -qv syn2-dev
 then
     if [ -z ${LD_LIBRARY_PATH} ]
     then
-        export LD_LIBRARY_PATH=${SYNINSTALL}/lib
+        export LD_LIBRARY_PATH=${SYNINSTALL}/lib:{SYNINSTALL}/lib64
     else
-        export LD_LIBRARY_PATH=${SYNINSTALL}/lib:$LD_LIBRARY_PATH
+        export LD_LIBRARY_PATH=${SYNINSTALL}/lib:${SYNINSTALL}/lib64:$LD_LIBRARY_PATH
     fi
 fi
 
