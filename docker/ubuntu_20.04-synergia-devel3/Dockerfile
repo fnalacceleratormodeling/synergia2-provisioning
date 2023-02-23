@@ -6,14 +6,14 @@ RUN apt-get update -y \
         cmake \
         g++ \
         git \
-        libeigen3-dev \
         libfftw3-dev \
         libfftw3-mpi-dev \
         libgsl-dev \
         libhdf5-dev \
-        libmpich-dev \
-        mpich \
+	libhdf5-mpi-dev \
+        libopenmpi-dev \
         ninja-build \
+	python-is-python3 \
         python3-dev \
         python3-h5py \
         python3-matplotlib \
@@ -22,7 +22,7 @@ RUN apt-get update -y \
         python3-pip \
         python3-pyparsing \
         python3-pyqt5 \
-        python3-tables \
+	python3-h5py \
         python3-pytest \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
@@ -58,14 +58,11 @@ WORKDIR ${BLD}/synergia2
 
 RUN cmake -DCMAKE_INSTALL_PREFIX=${INSTALL} \
   -DCMAKE_BUILD_TYPE=Release \
-  -DKokkos_ENABLE_OPENMP=ON \
-  -DENABLE_CUDA=OFF \
-  -DALLOW_PADDING=on \
-  -DBUILD_PYTHON_BINDINGS=on \
-  -DPYTHON_EXECUTABLE=/usr/bin/python3 \
+  -DENABLE_KOKKOS_BACKEND=OpenMP \
+  -DALLOW_PADDING=ON \
   -DSIMPLE_TIMER=OFF \
   ${SRC}/synergia2 \
-  && make -j 4 \
+  && make -j 2 \
   && make install
 
 WORKDIR /home/workdir
