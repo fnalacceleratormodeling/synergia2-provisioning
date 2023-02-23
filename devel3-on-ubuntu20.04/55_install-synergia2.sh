@@ -90,14 +90,15 @@ then
     cd ${SYNBLD}
 
 
+#  -DUSE_EXTERNAL_KOKKOS=OFF \
+#  -DUSE_EXTERNAL_CEREAL=OFF \
+#  -DENABLE_KOKKOS_BACKEND=OpenMP \
+
 CC=gcc CXX=g++ \
 cmake -DCMAKE_INSTALL_PREFIX=${SYNINSTALL} \
-  -DCMAKE_BUILD_TYPE=Release \
-  -DENABLE_CUDA=off \
-  -DENABLE_OPENMP=on \
-  -DALLOW_PADDING=on \
-  -DBUILD_PYTHON_BINDINGS=on \
-  -DPYTHON_EXECUTABLE=${PY_EXE} \
+  -DCMAKE_BUILD_TYPE=RelWithDebInfo \
+  -DENABLE_KOKKOS_BACKEND=OpenMP \
+  -DALLOW_PADDING=ON \
   -DSIMPLE_TIMER=OFF \
    ${SYNSRC} |& tee synergia2.cmake.out
 
@@ -109,7 +110,7 @@ cmake -DCMAKE_INSTALL_PREFIX=${SYNINSTALL} \
         exit 10
     fi
 
-    make -j 2 VERBOSE=t |& tee synergia2.make.out
+    make -j 4 VERBOSE=t |& tee synergia2.make.out
     if [ $? -eq 0 ]
     then
         echo "Congratulations!! synergia2 is make worked !!!"
