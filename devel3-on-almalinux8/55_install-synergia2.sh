@@ -88,7 +88,7 @@ then
     # edit utils/CMakeLists.txt to add the stdc++fs library needed
     # for g++-8.5 to find std::filesystem library.
     CMLF=${SYNSRC}/src/synergia/utils/CMakeLists.txt
-    if grep "target_link_libraries(synergia_serialiation" |  grep -q stdc++fs >/dev/null
+    if grep "target_link_libraries(synergia_serialization" ${CMLF} |  grep -q stdc++fs >/dev/null
     then
         # stdc11fs is already there so I don't need to put it in.
         true
