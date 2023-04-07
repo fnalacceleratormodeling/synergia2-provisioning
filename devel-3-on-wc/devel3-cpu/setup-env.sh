@@ -1,5 +1,8 @@
-# Generated via: spack env activate --sh synergia-devel3-cpu-ivybridge-002 &> setup_env_synergia-devel3-cpu-ivybridge-002.sh
+module purge > /dev/null 2>&1
+module load git
+module load gnu12
 
+# Generated via: spack env activate --sh synergia-devel3-cpu-ivybridge-002 &> setup_env_synergia-devel3-cpu-ivybridge-002.sh
 export SPACK_ENV=/wclustre/accelsim/spack-shared-v4/spack/var/spack/environments/synergia-devel3-cpu-ivybridge-002;
 alias despacktivate='spack env deactivate';
 export ACLOCAL_PATH=/wclustre/accelsim/spack-shared-v4/spack/var/spack/environments/synergia-devel3-cpu-ivybridge-002/.spack-env/view/share/aclocal;
