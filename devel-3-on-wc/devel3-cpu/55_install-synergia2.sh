@@ -89,7 +89,7 @@ then
     mkdir -p ${SYNBLD}
     cd ${SYNBLD}
 
-
+CC=gcc CXX=g++ \
 cmake -DCMAKE_INSTALL_PREFIX=${SYNINSTALL} \
   -DCMAKE_BUILD_TYPE=Release \
   -DUSE_EXTERNAL_KOKKOS=ON \
