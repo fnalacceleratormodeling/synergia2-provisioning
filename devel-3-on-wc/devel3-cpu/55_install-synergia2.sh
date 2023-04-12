@@ -89,12 +89,13 @@ then
     mkdir -p ${SYNBLD}
     cd ${SYNBLD}
 
-
 CC=gcc CXX=g++ \
 cmake -DCMAKE_INSTALL_PREFIX=${SYNINSTALL} \
   -DCMAKE_BUILD_TYPE=Release \
   -DUSE_EXTERNAL_KOKKOS=ON \
   -DBUILD_FD_SPACE_CHARGE_SOLVER=ON \
+  -DUSE_OPENPMD_IO=ON \
+  -DUSE_EXTERNAL_OPENPMD=ON \
   -DBUILD_PYTHON_BINDINGS=ON \
   -DPYTHON_EXECUTABLE=${PY_EXE} \
   -DSIMPLE_TIMER=OFF \
@@ -134,13 +135,11 @@ echo "PYTHONPATH=${PYTHONPATH}"
 cat >${SYNINSTALL}/bin/setup.sh <<EOF
 #!/bin/bash
 
-# load the mpi module
-module load gnu9
-module load openmpi3
-module load texlive/2019
-source /work1/accelsim/spack-shared-v2/spack/share/spack/setup-env.sh
-export PATH=/work1/accelsim/spack-shared-v2/cmake-3.19.5-Linux-x86_64/bin:$PATH
-spack env activate synergia-dev-010
+module purge > /dev/null 2>&1
+module load git
+module load gnu12
+
+source /wclustre/accelsim/spack-shared-v4/setup_env_synergia-devel3-cpu-ivybridge-002.sh
 
 
 PATH=${SYNINSTALL}/bin:\${PATH}

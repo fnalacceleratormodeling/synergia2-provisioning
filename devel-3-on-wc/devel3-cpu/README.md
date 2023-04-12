@@ -6,6 +6,9 @@
 
     `bash 55_install-synergia2.sh`
 
+If you are running `cmake` from the login node, be sure to add `-DMPIEXEC_EXECUTABLE=$(which srun)`.
+
+
 To reinstall after changing the source, run:
 
     `bash 55_install-synergia2.sh reinstall`
