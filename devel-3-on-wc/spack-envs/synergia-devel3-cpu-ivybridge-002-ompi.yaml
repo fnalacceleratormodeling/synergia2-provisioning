@@ -4,34 +4,39 @@
 # configuration settings.
 spack:
   packages:
+    lustre:
+      externals:
+      - spec: lustre@2.13.57
+        prefix: /usr
     all:
-      compiler: [gcc@11.3.0]
+      compiler: [gcc@12.2.0]
       providers:
         mpi:
-        - mpich
+        - openmpi
   # add package specs to the `specs` list
   specs:
-  - mpich@4.0.2+argobots+slurm~fortran~cuda device=ch4 netmod=ucx pmi=pmix
-  - yaksa~cuda
-  - pmix@3.2.3
-  - hdf5@1.12.1+hl+mpi
+  - openmpi@main~romio+lustre+legacylaunchers fabrics=ucx schedulers=slurm
+  - hdf5@1.14.0+hl+mpi
   - fftw+mpi+openmp
-  - kokkos@develop+openmp std=17
-  - petsc@main+batch~fortran
+  - kokkos+openmp
+  - petsc+batch~fortran
+  - openpmd-api+python
+  - adios2~fortran
   - pkgconf
   - gsl
   - cmake
-  - eigen
   - cereal
   - ninja
-  - python+tkinter
+  - python+tkinter@3.11.2
   - py-numpy
+  - py-pandas@2.0.0
+  - py-seaborn
   - py-matplotlib
   - py-pyparsing
   - py-pip
   - py-mpi4py
   - py-h5py+mpi
-  - py-pytest@7.1.2
+  - py-pytest
   view: true
   concretizer:
     unify: true

@@ -1,0 +1,57 @@
+# This is a Spack Environment file.
+#
+# It describes a set of packages to be installed, along with
+# configuration settings.
+spack:
+  packages:
+    gettext:
+      externals:
+      - spec: gettext@0.19.8.1
+        prefix: /usr
+    perl:
+      externals:
+      - spec: perl@5.16.3~cpanm+open+shared+threads
+        prefix: /usr
+    tar:
+      externals:
+      - spec: tar@1.26
+        prefix: /usr
+    openssh:
+      externals:
+      - spec: openssh@7.4p1
+        prefix: /usr
+    all:
+      compiler: [gcc@11.3.0]
+      providers:
+        mpi:
+        - openmpi
+  # add package specs to the `specs` list
+  specs:
+  - openmpi@4.1.5+cuda+legacylaunchers schedulers=slurm fabrics=ucx cuda_arch=70
+  - pmix@3.2.3
+  - ucx+cuda+gdrcopy cuda_arch=70
+  - hdf5@1.14.0+hl+mpi
+  - adios2~fortran+cuda+hdf5 cuda_arch=70
+  - openpmd-api+python
+  - kokkos-nvcc-wrapper@4.0.00
+  - kokkos+openmp+wrapper+cuda+cuda_constexpr+cuda_lambda cuda_arch=70
+  - petsc@3.19.0+batch+cuda~fortran cuda_arch=70
+  - pkgconf
+  - gsl
+  - cmake
+  - eigen
+  - cereal
+  - ninja
+  - python+tkinter@3.11.2
+  - py-numpy
+  - py-seaborn
+  - py-matplotlib
+  - py-pybind11@2.10.4
+  - py-pyparsing
+  - py-pip
+  - py-mpi4py
+  - py-h5py+mpi
+  - py-pytest
+  view: true
+  concretizer:
+    unify: true
