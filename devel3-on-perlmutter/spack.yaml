@@ -1,0 +1,33 @@
+spack:
+  packages:
+    all:
+      compiler: [gcc@11.2.0]
+      providers:
+        mpi:
+        - cray-mpich
+        pkgconfig:
+        - pkg-config
+  mirrors:
+    perlmutter-spack-develop: file:///global/common/software/spackecp/mirrors/perlmutter-spack-develop
+    perlmutter-e4s-22.05: file:///global/common/software/spackecp/mirrors/perlmutter-e4s-22.05
+  specs:
+  - hdf5@1.14.1-2+hl+mpi
+    # kokkos compiler wrapper fails to properly inject MPI libraries when compiled with spack
+    # hence, we disable it for now
+    #- kokkos@develop+cuda+cuda_constexpr+cuda_lambda+wrapper cuda_arch=80 std=17
+  - petsc@main~fortran~metis+cuda
+  - openpmd-api
+  - gsl
+  - cmake
+  - ninja
+  - cereal
+  - python
+  - py-pytest
+  - py-pybind11
+  - py-h5py+mpi
+  - py-mpi4py
+  - py-pyparsing
+  concretizer:
+    unify: true
+  view: true
+
