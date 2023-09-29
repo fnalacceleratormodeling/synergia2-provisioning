@@ -8,9 +8,11 @@ cat >${SYNINSTALL}/bin/setup.sh <<EOF
 # set up environment
 
 module purge > /dev/null 2>&1
+module load git
 module load gnu11
+module load cuda11
 
-source /wclustre/accelsim/spack-shared-v3/setup_env_synergia-devel3-v100-001.sh
+source /wclustre/accelsim/spack-shared-v4/setup_env_synergia-devel3-v100-002.sh
 
 PATH=${SYNINSTALL}/bin:\${PATH}
 if [ -n "\${LD_LIBRARY_PATH}" ]
