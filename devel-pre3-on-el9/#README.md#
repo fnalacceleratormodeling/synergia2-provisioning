@@ -1,0 +1,23 @@
+# Install synergia2 devel-pre3 branch on EL9 like systems
+
+Dependencies are satisfied by rpm installed packages.
+
+Install these packages:
+
+<pre>
+python3-devel
+python3-numpy
+python3-pytest
+python3-pyparsing
+eigen3-devel
+gsl-devel
+openmpi-devel
+boost-devel
+boost-system
+boost-serialization
+boost-test
+boost-filesystem
+boost-regex
+boost-python3
+
+
