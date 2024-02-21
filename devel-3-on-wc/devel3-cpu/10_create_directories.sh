@@ -2,10 +2,9 @@
 # Create the directories and set environment variables
 
 module purge > /dev/null 2>&1
-module load git
-module load gnu12
+module load gcc/12.3.0
 
-source /wclustre/accelsim/spack-shared-v4/setup_env_synergia-devel3-cpu-ivybridge-002-ompi.sh
+source /wclustre/accelsim/spack_013024/envs/synergia-devel3-cpu-ivybridge-ompi.sh
 
 # The following directory will be the top level of the Synergia build tree
 #SYNHOME=${HOME}/syn2-devel3-cpu
