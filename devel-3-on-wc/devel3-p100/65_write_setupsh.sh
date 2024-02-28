@@ -8,9 +8,9 @@ cat >${SYNINSTALL}/bin/setup.sh <<EOF
 # set up environment
 
 module purge > /dev/null 2>&1
-module load gnu11
+module load gcc/12.3.0
 
-source /wclustre/accelsim/spack-shared-v3/setup_env_synergia-devel3-p100-001.sh
+source /wclustre/accelsim/spack_013024/envs/synergia-devel3-gpu-p100-ompi.sh
 
 
 PATH=${SYNINSTALL}/bin:\${PATH}
