@@ -4,7 +4,7 @@
 module purge > /dev/null 2>&1
 module load gcc/12.3.0
 
-source /wclustre/accelsim/spack_013024/envs/synergia-devel3-gpu-v100-ompi.sh
+source /wclustre/accelsim/spack_051624/envs/synergia-devel3-gpu-v100-ompi.sh
 
 # The following directory will be the top level of the Synergia build tree
 #SYNHOME=${HOME}/syn2-devel3-v100
