@@ -1,33 +1,109 @@
 spack:
   packages:
+    diffutils:
+      externals:
+      - spec: diffutils@3.6
+        prefix: /usr
+    pkg-config:
+      externals:
+      - spec: pkg-config@0.29.2
+        prefix: /usr
+    gettext:
+      externals:
+      - spec: gettext@0.20.2
+        prefix: /usr
+    xz:
+      externals:
+      - spec: xz@5.2.3
+        prefix: /usr
+    curl:
+      externals:
+      - spec: curl@8.0.1+gssapi+ldap+nghttp2
+        prefix: /usr
+    sed:
+      externals:
+      - spec: sed@4.4
+        prefix: /usr
+    tar:
+      externals:
+      - spec: tar@1.34
+        prefix: /usr
+    ncurses:
+      externals:
+      - spec: ncurses@6.1.20180317+termlib abi=6
+        prefix: /usr
+    openssh:
+      externals:
+      - spec: openssh@8.4p1
+        prefix: /usr
+    openssl:
+      externals:
+      - spec: openssl@1.1.1l
+        prefix: /usr
+    git:
+      externals:
+      - spec: git@2.35.3~tcltk
+        prefix: /usr
+    perl:
+      externals:
+      - spec: perl@5.26.1~cpanm+opcode+open+shared+threads
+        prefix: /usr
     all:
-      compiler: [gcc@11.2.0]
+      compiler: [gcc@12.3.0]
       providers:
         mpi:
         - cray-mpich
+        blas:
+        - cray-libsci
+        lapack:
+        - cray-libsci
+        scalapack:
+        - cray-libsci
         pkgconfig:
         - pkg-config
-  mirrors:
-    perlmutter-spack-develop: file:///global/common/software/spackecp/mirrors/perlmutter-spack-develop
-    perlmutter-e4s-22.05: file:///global/common/software/spackecp/mirrors/perlmutter-e4s-22.05
+    cray-libsci:
+      buildable: false
+      externals:
+      - spec: cray-libsci@os %gcc@12.3.0
+        modules: [cray-libsci]
+        prefix: /opt/cray/pe/libsci/default/gnu/12.3/x86_64
+    cray-mpich:
+      buildable: false
+      externals:
+      - spec: cray-mpich@8.1.28 %gcc@12.3.0
+        prefix: /opt/cray/pe/mpich/8.1.28/ofi/gnu/12.3
+        modules: [cray-mpich/8.1.28, cudatoolkit/12.4]
+    cuda:
+      buildable: false
+      externals:
+      - spec: cuda@12.4.131
+        prefix: /opt/nvidia/hpc_sdk/Linux_x86_64/24.5/cuda/12.4
+        modules: [cudatoolkit/12.4]
   specs:
-  - hdf5@1.14.1-2+hl+mpi
-    # kokkos compiler wrapper fails to properly inject MPI libraries when compiled with spack
-    # hence, we disable it for now
-    #- kokkos@develop+cuda+cuda_constexpr+cuda_lambda+wrapper cuda_arch=80 std=17
-  - petsc@main~fortran~metis+cuda
-  - openpmd-api
+  - kokkos+cuda+wrapper+openmp cuda_arch=80 cxxstd=17
+  - hdf5+hl+mpi
+  - adios2~fortran+cuda+hdf5~libcatalyst cuda_arch=80
+  - strumpack+cuda+magma cuda_arch=80 ^[virtuals=scalapack] cray-libsci ^[virtuals=blas]
+    cray-libsci ^[virtuals=lapack] cray-libsci
+  - magma+cuda cuda_arch=80
+  - petsc+batch+cuda+hypre+strumpack cuda_arch=80 cflags="-O3" cxxflags="-O3" fflags="-O3"
+  - blaspp+cuda cuda_arch=80
+  - lapackpp+cuda cuda_arch=80
+  - slate+cuda cuda_arch=80
+  - openpmd-api+python
   - gsl
   - cmake
   - ninja
   - cereal
   - python
+  - py-seaborn
+  - py-matplotlib
   - py-pytest
   - py-pybind11
   - py-h5py+mpi
   - py-mpi4py
   - py-pyparsing
-  concretizer:
-    unify: true
   view: true
+  concretizer:
+    unify: when_possible
 
