@@ -134,6 +134,9 @@ then
     export PYTHONPATH=${SYNINSTALL}/lib:${SYNINSTALL}/lib/${PY_VER}/site-packages:\${PYTHONPATH}
 else
     export PYTHONPATH=${SYNINSTALL}/lib:${SYNINSTALL}/lib/${PY_VER}/site-packages
+
+export SYNERGIA2DIR=${SYNINSTALL}/lib
+
 fi
 EOF
 
