@@ -1,4 +1,4 @@
-## Building on ubuntu 22.04
+## Building on ubuntu 24.04
 
 Install all the good packages with apt
 
