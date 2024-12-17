@@ -5,7 +5,7 @@ Install all the good packages with apt
 edit the file 10_create_directories.sh to set SYNHOME to the directory
 that will receive the src, build and install.
 
-1. bash 25_instell_chef.sh
+1. bash 25_install_chef.sh
 
 2. bash 55_install_synergia2.sh
 
