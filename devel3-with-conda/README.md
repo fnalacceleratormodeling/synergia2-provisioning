@@ -64,6 +64,12 @@ Test the install
 ctest
 ```
 
+### Running a synergia script
+
+Example Synergia scripts are in the examples subdirectory.
+After the installation, scripts may be run by activating the `synergia` conda
+environment and running the script with python.
+
 Run an example:
 
 ```
