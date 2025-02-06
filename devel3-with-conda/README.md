@@ -43,6 +43,36 @@ The following cmake command builds for an x86_64 or ARM64 CPU. If you are
 on an ARM cpu, set -DGSV=DOUBLE and -SALLOW_PADDING=OFF, otherwise use GSV=AVX.
 
 ```
-cmake -DCMAKE_C_COMPILER=cc -DCMAKE_CXX_COMPILER=c++ -DCMAKE_PREFIX_PATH=$CONDA_PREFIX -DCMAKE_INSTALL_PATH=$CONDA_PREFIX -DCMAKE_BUILD_TYPE=Release -DENABLE_KOKKOS_BACKEND=OpenMP -DGSV=AVX -DALLOW_PADDING=ON -DSIMPLE_TIMER=OFF -DUSE_OPENPMD_IO=OFF -DBUILD_FD_SPACE_CHARGE_SOLVER=OFF -G"Ninja" ..
+cmake -DCMAKE_C_COMPILER=cc -DCMAKE_CXX_COMPILER=c++ -DCMAKE_PREFIX_PATH=$CONDA_PREFIX -DCMAKE_INSTALL_PREFIX=$CONDA_PREFIX -DCMAKE_BUILD_TYPE=Release -DENABLE_KOKKOS_BACKEND=OpenMP -DGSV=AVX -DALLOW_PADDING=ON -DSIMPLE_TIMER=OFF -DUSE_OPENPMD_IO=OFF -DBUILD_FD_SPACE_CHARGE_SOLVER=OFF -G"Ninja" ..
 ```
 
+Build and install
+
+```
+ninja install
+```
+
+or limit the number of cores to use
+
+```
+ninja -j 4 install
+```
+
+Test the install
+
+```
+ctest
+```
+
+Run an example:
+
+```
+cd examples/fodo
+python fodo.py
+```
+
+Plot some results using provided scripts
+
+```
+python ../../../src/analysis_tools/diag_plot.py diag_full.h5 x_std y_std
+```
