@@ -39,14 +39,18 @@ Change directory into the `build` directory to execute the `cmake` command.
 cd build
 ```
 
-The following cmake command builds for an x86_64 or ARM64 CPU. If you are
-on an ARM cpu, set -DGSV=DOUBLE and -DALLOW_PADDING=OFF, otherwise use -DGSV=AVX.
+The following `cmake` command configures building with OpenMP for an x86_64 CPU.
 
 ```
 cmake -DCMAKE_C_COMPILER=cc -DCMAKE_CXX_COMPILER=c++ -DCMAKE_PREFIX_PATH=$CONDA_PREFIX -DCMAKE_INSTALL_PREFIX=$CONDA_PREFIX -DCMAKE_BUILD_TYPE=Release -DENABLE_KOKKOS_BACKEND=OpenMP -DGSV=AVX -DALLOW_PADDING=ON -DSIMPLE_TIMER=OFF -DUSE_OPENPMD_IO=OFF -DBUILD_FD_SPACE_CHARGE_SOLVER=OFF -G"Ninja" ..
 ```
+Or use OpenMP on an ARM64 CPU use the following `cmake` command
+```
+cmake -DCMAKE_C_COMPILER=cc -DCMAKE_CXX_COMPILER=c++ -DCMAKE_PREFIX_PATH=$CONDA_PREFIX -DCMAKE_INSTALL_PREFIX=$CONDA_PREFIX -DCMAKE_BUILD_TYPE=Release -DENABLE_KOKKOS_BACKEND=OpenMP -DGSV=DOUBLE -DALLOW_PADDING=OFF -DSIMPLE_TIMER=OFF -DUSE_OPENPMD_IO=OFF -DBUILD_FD_SPACE_CHARGE_SOLVER=OFF -G"Ninja" ..
+```
+Note the `..` at the end of the `cmake` command.
 
-Build and install
+Build and install the libraries and python modules:
 
 ```
 ninja install
