@@ -22,7 +22,7 @@ then
 
     cd ${SRC}
 
-    git clone -b upgrade-chef-for-new-boost-and-gcc  https://bitbucket.org/fnalacceleratormodeling/chef.git |& tee chef.git-clone.out
+    git clone -b master https://bitbucket.org/fnalacceleratormodeling/chef.git |& tee chef.git-clone.out
 
     if [ ! -d ${CHEFSRC} ]
     then
