@@ -1,6 +1,6 @@
 ## Build the devel3 branch using CUDA for nVidia GPUS with conda dependencies
 
-### This should work on most systems.
+### This should work on most systems, tested on Fermilab EAF
 
 First, make sure that you have `conda` installed and can create
 conda environments.
@@ -84,3 +84,6 @@ Plot some results using provided scripts
 ```
 python ../../../src/analysis_tools/diag_plot.py diag_full.h5 x_std y_std
 ```
+
+### Note for the EAF
+If you add the ipykernel package to the conda environment then Synergia will be available as a notebook.
