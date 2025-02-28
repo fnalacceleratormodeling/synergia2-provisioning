@@ -45,7 +45,6 @@ The following `cmake` command configures building with CUDA.
 cmake -DCMAKE_PREFIX_PATH=$CONDA_PREFIX -DCMAKE_INSTALL_PREFIX=$CONDA_PREFIX -DCMAKE_BUILD_TYPE=Release -DENABLE_KOKKOS_BACKEND=CUDA -DGSV=DOUBLE -DALLOW_PADDING=OFF -DUSE_EXTERNAL_KOKKOS=OFF -DSIMPLE_TIMER=OFF -DUSE_OPENPMD_IO=OFF -DBUILD_FD_SPACE_CHARGE_SOLVER=OFF -G"Ninja" ..
 ```
 
-```
 Note the `..` at the end of the `cmake` command.
 
 Build and install the libraries and python modules:
